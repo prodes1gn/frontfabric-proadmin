@@ -1,0 +1,30 @@
+{
+    "short_name": "ProAdmin",
+    "name": "ProAdmin",
+    "theme_color": "#4A90E2",
+    "background_color": "#F7F8F9",
+    "display": "standalone",
+    "icons": [
+        {
+            "src": "uploads/settings/logo.svg",
+            "type": "image/png",
+            "sizes": "48x48"
+        },
+        {
+            "src": "uploads/settings/logo.svg",
+            "type": "image/png",
+            "sizes": "96x96"
+        },
+        {
+            "src": "uploads/settings/logo.svg",
+            "type": "image/png",
+            "sizes": "144x144"
+        },
+        {
+            "src": "uploads/settings/logo.svg",
+            "type": "image/png",
+            "sizes": "192x192"
+        }
+    ],
+    "start_url": "_proadmin/login?utm_source=launcher"
+}
