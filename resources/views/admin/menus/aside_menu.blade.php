@@ -24,6 +24,66 @@
             </li>
             @endcan
             <!--CRUD-ITEM-HOMEPAGES END-->
+            <!--CRUD-ITEM-SERVICESPAGES START-->
+            @can('servicespage_access')
+            <li class="{{ request()->is(config('cms.admin_panel_url')."/page/servicespage") || request()->is(config('cms.admin_panel_url')."/page/servicespage/*") ? "menu-item-active" : "" }} menu-item" aria-haspopup="true">
+                <a href="{{ route("admin.servicespages.edit", 1) }}" title="{{ trans('cruds.servicespage') }}" class="menu-link">
+                    <i class="menu-icon la la la-file"></i>
+                    <span class="menu-text">{{ trans('cruds.servicespage') }}</span>
+                </a>
+            </li>
+            @endcan
+            <!--CRUD-ITEM-SERVICESPAGES END-->
+            <!--CRUD-ITEM-PORTFOLIOPAGES START-->
+            @can('portfoliopage_access')
+            <li class="{{ request()->is(config('cms.admin_panel_url')."/page/portfoliopage") || request()->is(config('cms.admin_panel_url')."/page/portfoliopage/*") ? "menu-item-active" : "" }} menu-item" aria-haspopup="true">
+                <a href="{{ route("admin.portfoliopages.edit", 1) }}" title="{{ trans('cruds.portfoliopage') }}" class="menu-link">
+                    <i class="menu-icon la la la-file"></i>
+                    <span class="menu-text">{{ trans('cruds.portfoliopage') }}</span>
+                </a>
+            </li>
+            @endcan
+            <!--CRUD-ITEM-PORTFOLIOPAGES END-->
+            <!--CRUD-ITEM-APPROACHPAGES START-->
+            @can('approachpage_access')
+            <li class="{{ request()->is(config('cms.admin_panel_url')."/page/approachpage") || request()->is(config('cms.admin_panel_url')."/page/approachpage/*") ? "menu-item-active" : "" }} menu-item" aria-haspopup="true">
+                <a href="{{ route("admin.approachpages.edit", 1) }}" title="{{ trans('cruds.approachpage') }}" class="menu-link">
+                    <i class="menu-icon la la la-file"></i>
+                    <span class="menu-text">{{ trans('cruds.approachpage') }}</span>
+                </a>
+            </li>
+            @endcan
+            <!--CRUD-ITEM-APPROACHPAGES END-->
+            <!--CRUD-ITEM-ABOUTUSPAGES START-->
+            @can('aboutuspage_access')
+            <li class="{{ request()->is(config('cms.admin_panel_url')."/page/aboutuspage") || request()->is(config('cms.admin_panel_url')."/page/aboutuspage/*") ? "menu-item-active" : "" }} menu-item" aria-haspopup="true">
+                <a href="{{ route("admin.aboutuspages.edit", 1) }}" title="{{ trans('cruds.aboutuspage') }}" class="menu-link">
+                    <i class="menu-icon la la la-file"></i>
+                    <span class="menu-text">{{ trans('cruds.aboutuspage') }}</span>
+                </a>
+            </li>
+            @endcan
+            <!--CRUD-ITEM-ABOUTUSPAGES END-->
+            <!--CRUD-ITEM-BLOGPAGES START-->
+            @can('blogpage_access')
+            <li class="{{ request()->is(config('cms.admin_panel_url')."/page/blogpage") || request()->is(config('cms.admin_panel_url')."/page/blogpage/*") ? "menu-item-active" : "" }} menu-item" aria-haspopup="true">
+                <a href="{{ route("admin.blogpages.edit", 1) }}" title="{{ trans('cruds.blogpage') }}" class="menu-link">
+                    <i class="menu-icon la la la-file"></i>
+                    <span class="menu-text">{{ trans('cruds.blogpage') }}</span>
+                </a>
+            </li>
+            @endcan
+            <!--CRUD-ITEM-BLOGPAGES END-->
+            <!--CRUD-ITEM-CONTACTSPAGES START-->
+            @can('contactspage_access')
+            <li class="{{ request()->is(config('cms.admin_panel_url')."/page/contactspage") || request()->is(config('cms.admin_panel_url')."/page/contactspage/*") ? "menu-item-active" : "" }} menu-item" aria-haspopup="true">
+                <a href="{{ route("admin.contactspages.edit", 1) }}" title="{{ trans('cruds.contactspage') }}" class="menu-link">
+                    <i class="menu-icon la la la-file"></i>
+                    <span class="menu-text">{{ trans('cruds.contactspage') }}</span>
+                </a>
+            </li>
+            @endcan
+            <!--CRUD-ITEM-CONTACTSPAGES END-->
             <!--CRUD-NEW-PAGE-->
             @endif
             @if($menu_modules === true)

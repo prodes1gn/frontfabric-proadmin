@@ -44,6 +44,48 @@ Route::group(['as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth',
         Route::delete('homepage', 'HomepagesController@delete')->name('homepage.delete');
         Route::post('homepage/storeMedia', 'HomepagesController@storeMedia')->name('homepage.storeMedia');
 
+        // #CRUD-PAGE-SERVICESPAGES
+        // #CRUD-ITEM-SERVICESPAGES-PAGEBUILDER
+        Route::get('servicespage', 'ServicespagesController@edit')->name('servicespages.edit');
+        Route::put('servicespage', 'ServicespagesController@update')->name('servicespages.update');
+        Route::delete('servicespage', 'ServicespagesController@delete')->name('servicespage.delete');
+        Route::post('servicespage/storeMedia', 'ServicespagesController@storeMedia')->name('servicespage.storeMedia');
+
+        // #CRUD-PAGE-PORTFOLIOPAGES
+        // #CRUD-ITEM-PORTFOLIOPAGES-PAGEBUILDER
+        Route::get('portfoliopage', 'PortfoliopagesController@edit')->name('portfoliopages.edit');
+        Route::put('portfoliopage', 'PortfoliopagesController@update')->name('portfoliopages.update');
+        Route::delete('portfoliopage', 'PortfoliopagesController@delete')->name('portfoliopage.delete');
+        Route::post('portfoliopage/storeMedia', 'PortfoliopagesController@storeMedia')->name('portfoliopage.storeMedia');
+
+        // #CRUD-PAGE-APPROACHPAGES
+        // #CRUD-ITEM-APPROACHPAGES-PAGEBUILDER
+        Route::get('approachpage', 'ApproachpagesController@edit')->name('approachpages.edit');
+        Route::put('approachpage', 'ApproachpagesController@update')->name('approachpages.update');
+        Route::delete('approachpage', 'ApproachpagesController@delete')->name('approachpage.delete');
+        Route::post('approachpage/storeMedia', 'ApproachpagesController@storeMedia')->name('approachpage.storeMedia');
+
+        // #CRUD-PAGE-ABOUTUSPAGES
+        // #CRUD-ITEM-ABOUTUSPAGES-PAGEBUILDER
+        Route::get('aboutuspage', 'AboutuspagesController@edit')->name('aboutuspages.edit');
+        Route::put('aboutuspage', 'AboutuspagesController@update')->name('aboutuspages.update');
+        Route::delete('aboutuspage', 'AboutuspagesController@delete')->name('aboutuspage.delete');
+        Route::post('aboutuspage/storeMedia', 'AboutuspagesController@storeMedia')->name('aboutuspage.storeMedia');
+
+        // #CRUD-PAGE-BLOGPAGES
+        // #CRUD-ITEM-BLOGPAGES-PAGEBUILDER
+        Route::get('blogpage', 'BlogpagesController@edit')->name('blogpages.edit');
+        Route::put('blogpage', 'BlogpagesController@update')->name('blogpages.update');
+        Route::delete('blogpage', 'BlogpagesController@delete')->name('blogpage.delete');
+        Route::post('blogpage/storeMedia', 'BlogpagesController@storeMedia')->name('blogpage.storeMedia');
+
+        // #CRUD-PAGE-CONTACTSPAGES
+        // #CRUD-ITEM-CONTACTSPAGES-PAGEBUILDER
+        Route::get('contactspage', 'ContactspagesController@edit')->name('contactspages.edit');
+        Route::put('contactspage', 'ContactspagesController@update')->name('contactspages.update');
+        Route::delete('contactspage', 'ContactspagesController@delete')->name('contactspage.delete');
+        Route::post('contactspage/storeMedia', 'ContactspagesController@storeMedia')->name('contactspage.storeMedia');
+
         #CRUD-NEW-PAGE
     });
     
