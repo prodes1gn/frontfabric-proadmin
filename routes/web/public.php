@@ -26,4 +26,4 @@ Route::group($config, function () {
     });
 });
 
-Route::post('deploy', 'App\Http\Controllers\DeployController@deploy');
+Route::post('deploy', 'App\Http\Controllers\DeployController@deploy'); 
