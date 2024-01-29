@@ -18,4 +18,4 @@ return array(
     'seoimages' => 'SEO Images',
     'seotype' => 'SEO Type',
     'seotypes' => 'SEO Types',
-);
+    'homepage' => 'Homepage',    'homepages' => 'Homepages',);

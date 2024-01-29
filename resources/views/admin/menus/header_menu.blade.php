@@ -31,6 +31,16 @@
                 </a>
                 <div class="menu-submenu menu-submenu-classic menu-submenu-left">
                     <ul class="menu-subnav">
+                        <!--CRUD-ITEM-HOMEPAGES START-->
+                        @can('homepage_access')
+                        <li class="{{ request()->is(config('cms.admin_panel_url')."/page/homepage") || request()->is(config('cms.admin_panel_url')."/page/homepage/*") ? "menu-item-active" : "" }} menu-item" aria-haspopup="true">
+                            <a href="{{ route("admin.homepages.edit", 1) }}" title="{{ trans('cruds.homepage') }}" class="menu-link">
+                                <i class="menu-icon la la-file"></i>
+                                <span class="menu-text">{{ trans('cruds.homepage') }}</span>
+                            </a>
+                        </li>
+                        @endcan
+                        <!--CRUD-ITEM-HOMEPAGES END-->
                         <!--CRUD-NEW-PAGE-->
                     </ul>
                 </div>

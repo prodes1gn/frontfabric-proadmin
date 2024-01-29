@@ -37,6 +37,13 @@ Route::group(['as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth',
     // #PAGES
     Route::group(['prefix' => 'page'], function () {
 
+        // #CRUD-PAGE-HOMEPAGES
+        // #CRUD-ITEM-HOMEPAGES-PAGEBUILDER
+        Route::get('homepage', 'HomepagesController@edit')->name('homepages.edit');
+        Route::put('homepage', 'HomepagesController@update')->name('homepages.update');
+        Route::delete('homepage', 'HomepagesController@delete')->name('homepage.delete');
+        Route::post('homepage/storeMedia', 'HomepagesController@storeMedia')->name('homepage.storeMedia');
+
         #CRUD-NEW-PAGE
     });
     

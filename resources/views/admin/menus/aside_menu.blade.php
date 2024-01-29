@@ -14,6 +14,16 @@
                 <h4 class="menu-text">{{ trans('global.pages') }}</h4>
                 <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
             </li>
+            <!--CRUD-ITEM-HOMEPAGES START-->
+            @can('homepage_access')
+            <li class="{{ request()->is(config('cms.admin_panel_url')."/page/homepage") || request()->is(config('cms.admin_panel_url')."/page/homepage/*") ? "menu-item-active" : "" }} menu-item" aria-haspopup="true">
+                <a href="{{ route("admin.homepages.edit", 1) }}" title="{{ trans('cruds.homepage') }}" class="menu-link">
+                    <i class="menu-icon la la la-file"></i>
+                    <span class="menu-text">{{ trans('cruds.homepage') }}</span>
+                </a>
+            </li>
+            @endcan
+            <!--CRUD-ITEM-HOMEPAGES END-->
             <!--CRUD-NEW-PAGE-->
             @endif
             @if($menu_modules === true)

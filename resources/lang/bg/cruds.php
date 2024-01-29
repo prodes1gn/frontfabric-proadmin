@@ -18,4 +18,4 @@ return array(
     'seoimages' => 'SEO Изображения',
     'seotype' => 'SEO Тип',
     'seotypes' => 'SEO Типове',
-);
+    'homepage' => 'Homepage',    'homepages' => 'Homepages',);
