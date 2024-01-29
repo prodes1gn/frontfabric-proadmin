@@ -8,6 +8,8 @@ Route::get('/dashboard', function () {
     return redirect()->route('admin.dashboard');
 });
 
+Route::get('/lang-change-front/{new_lang}', 'App\Http\Controllers\LanguageChangeController@changeLanguage')->name('lang-change-front');
+
 // #CONFIG PUBLIC ROUTES
 $locales = config('translatable.locales');
 if (is_array($locales) && count($locales) > 1) {
@@ -23,3 +25,5 @@ Route::group($config, function () {
         return view('public.welcome');
     });
 });
+
+Route::post('deploy', 'App\Http\Controllers\DeployController@deploy');
