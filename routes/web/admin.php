@@ -92,6 +92,86 @@ Route::group(['as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth',
     // #MODULES
     Route::group(['prefix' => 'module'], function () {
 
+        // #CRUD-ITEM-SERVICEITEMS
+        Route::group(['prefix' => 'serviceitems'], function () {
+        // #CRUD-ITEM-SERVICEITEMS-FILTERS
+        // #CRUD-ITEM-SERVICEITEMS-PAGEBUILDER
+        Route::post('storeMedia', 'ServiceitemsController@storeMedia')->name('serviceitem.storeMedia');
+        Route::post('move/{serviceitem}', 'ServiceitemsController@move')->name('serviceitem.move');
+        Route::delete('delete/{serviceitem}', 'ServiceitemsController@delete')->name('serviceitem.delete');
+        });
+        Route::resource('serviceitems', 'ServiceitemsController');
+
+        // #CRUD-ITEM-WHYUSHOMEPAGEITEMS
+        Route::group(['prefix' => 'whyushomepageitems'], function () {
+        // #CRUD-ITEM-WHYUSHOMEPAGEITEMS-FILTERS
+        // #CRUD-ITEM-WHYUSHOMEPAGEITEMS-PAGEBUILDER
+        Route::post('storeMedia', 'WhyushomepageitemsController@storeMedia')->name('whyushomepageitem.storeMedia');
+        Route::post('move/{whyushomepageitem}', 'WhyushomepageitemsController@move')->name('whyushomepageitem.move');
+        Route::delete('delete/{whyushomepageitem}', 'WhyushomepageitemsController@delete')->name('whyushomepageitem.delete');
+        });
+        Route::resource('whyushomepageitems', 'WhyushomepageitemsController');
+
+        // #CRUD-ITEM-TESTIMONIALSITEMS
+        Route::group(['prefix' => 'testimonialsitems'], function () {
+        // #CRUD-ITEM-TESTIMONIALSITEMS-FILTERS
+        // #CRUD-ITEM-TESTIMONIALSITEMS-PAGEBUILDER
+        Route::post('storeMedia', 'TestimonialsitemsController@storeMedia')->name('testimonialsitem.storeMedia');
+        Route::post('move/{testimonialsitem}', 'TestimonialsitemsController@move')->name('testimonialsitem.move');
+        Route::delete('delete/{testimonialsitem}', 'TestimonialsitemsController@delete')->name('testimonialsitem.delete');
+        });
+        Route::resource('testimonialsitems', 'TestimonialsitemsController');
+
+        // #CRUD-ITEM-APPPROACHITEMS
+        Route::group(['prefix' => 'appproachitems'], function () {
+        // #CRUD-ITEM-APPPROACHITEMS-FILTERS
+        // #CRUD-ITEM-APPPROACHITEMS-PAGEBUILDER
+        Route::post('storeMedia', 'AppproachitemsController@storeMedia')->name('appproachitem.storeMedia');
+        Route::post('move/{appproachitem}', 'AppproachitemsController@move')->name('appproachitem.move');
+        Route::delete('delete/{appproachitem}', 'AppproachitemsController@delete')->name('appproachitem.delete');
+        });
+        Route::resource('appproachitems', 'AppproachitemsController');
+
+        // #CRUD-ITEM-PORTFOLIOITEMS
+        Route::group(['prefix' => 'portfolioitems'], function () {
+        // #CRUD-ITEM-PORTFOLIOITEMS-FILTERS
+        // #CRUD-ITEM-PORTFOLIOITEMS-PAGEBUILDER
+        Route::post('storeMedia', 'PortfolioitemsController@storeMedia')->name('portfolioitem.storeMedia');
+        Route::post('move/{portfolioitem}', 'PortfolioitemsController@move')->name('portfolioitem.move');
+        Route::delete('delete/{portfolioitem}', 'PortfolioitemsController@delete')->name('portfolioitem.delete');
+        });
+        Route::resource('portfolioitems', 'PortfolioitemsController');
+
+        // #CRUD-ITEM-BLOGITEMS
+        Route::group(['prefix' => 'blogitems'], function () {
+        // #CRUD-ITEM-BLOGITEMS-FILTERS
+        // #CRUD-ITEM-BLOGITEMS-PAGEBUILDER
+        Route::post('storeMedia', 'BlogitemsController@storeMedia')->name('blogitem.storeMedia');
+        Route::post('move/{blogitem}', 'BlogitemsController@move')->name('blogitem.move');
+        Route::delete('delete/{blogitem}', 'BlogitemsController@delete')->name('blogitem.delete');
+        });
+        Route::resource('blogitems', 'BlogitemsController');
+
+        // #CRUD-ITEM-REQUESTSITEMS
+        Route::group(['prefix' => 'requestsitems'], function () {
+        // #CRUD-ITEM-REQUESTSITEMS-FILTERS
+        // #CRUD-ITEM-REQUESTSITEMS-PAGEBUILDER
+        Route::post('storeMedia', 'RequestsitemsController@storeMedia')->name('requestsitem.storeMedia');
+        Route::post('move/{requestsitem}', 'RequestsitemsController@move')->name('requestsitem.move');
+        Route::delete('delete/{requestsitem}', 'RequestsitemsController@delete')->name('requestsitem.delete');
+        });
+        Route::resource('requestsitems', 'RequestsitemsController');
+
+        // #CRUD-ITEM-SYSTEMPAGESITEMS
+        Route::group(['prefix' => 'systempagesitems'], function () {
+        // #CRUD-ITEM-SYSTEMPAGESITEMS-FILTERS
+        // #CRUD-ITEM-SYSTEMPAGESITEMS-PAGEBUILDER
+        Route::post('storeMedia', 'SystempagesitemsController@storeMedia')->name('systempagesitem.storeMedia');
+        Route::post('move/{systempagesitem}', 'SystempagesitemsController@move')->name('systempagesitem.move');
+        Route::delete('delete/{systempagesitem}', 'SystempagesitemsController@delete')->name('systempagesitem.delete');
+        });
+        Route::resource('systempagesitems', 'SystempagesitemsController');
+
         #CRUD-NEW-ITEM
     });
 });

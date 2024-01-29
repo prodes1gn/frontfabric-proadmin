@@ -130,6 +130,222 @@
             </div>
             <!--end::Add Roles-->
 
+            <!--CRUD-ITEM-SERVICEITEM-START-->
+            @can('serviceitem_create')
+            <div class="col-xl-6 fast-buttons">
+                <div class="card card-custom mb-5 bgi-no-repeat" style="background-position: left top; background-size: 100% auto; background-image: url({{ 'assets/media/svg/shapes/abstract-2.svg'}})">	
+                    <div class="card-body py-2 px-5">
+                        <div class="d-flex align-items-center justify-content-between p-4 flex-lg-wrap flex-xl-nowrap">
+                            <div class="d-flex flex-column mr-5">
+                                <p class="h4 text-primary mb-2">
+                                    {{ trans('global.create') }} {{ trans('cruds.serviceitem') }}
+                                </p>
+                                <p class="text-dark-50" mb-0">
+                                    {{ trans('global.fast_add_text') }} {{ trans('cruds.serviceitems') }}
+                                </p>
+                            </div>
+                            <div class="ml-6 ml-lg-0 ml-xxl-6 flex-shrink-0">
+                                <a href="{{ route('admin.serviceitems.create') }}" class="btn btn-primary font-weight-bold">
+                                    <i class="fas fa-plus-circle"></i>
+                                    {{ trans('global.add') }}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--CRUD-ITEM-SERVICEITEM-END-->
+            @endcan
+
+            <!--CRUD-ITEM-WHYUSHOMEPAGEITEM-START-->
+            @can('whyushomepageitem_create')
+            <div class="col-xl-6 fast-buttons">
+                <div class="card card-custom mb-5 bgi-no-repeat" style="background-position: left top; background-size: 100% auto; background-image: url({{ 'assets/media/svg/shapes/abstract-2.svg'}})">	
+                    <div class="card-body py-2 px-5">
+                        <div class="d-flex align-items-center justify-content-between p-4 flex-lg-wrap flex-xl-nowrap">
+                            <div class="d-flex flex-column mr-5">
+                                <p class="h4 text-primary mb-2">
+                                    {{ trans('global.create') }} {{ trans('cruds.whyushomepageitem') }}
+                                </p>
+                                <p class="text-dark-50" mb-0">
+                                    {{ trans('global.fast_add_text') }} {{ trans('cruds.whyushomepageitems') }}
+                                </p>
+                            </div>
+                            <div class="ml-6 ml-lg-0 ml-xxl-6 flex-shrink-0">
+                                <a href="{{ route('admin.whyushomepageitems.create') }}" class="btn btn-primary font-weight-bold">
+                                    <i class="fas fa-plus-circle"></i>
+                                    {{ trans('global.add') }}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--CRUD-ITEM-WHYUSHOMEPAGEITEM-END-->
+            @endcan
+
+            <!--CRUD-ITEM-TESTIMONIALSITEM-START-->
+            @can('testimonialsitem_create')
+            <div class="col-xl-6 fast-buttons">
+                <div class="card card-custom mb-5 bgi-no-repeat" style="background-position: left top; background-size: 100% auto; background-image: url({{ 'assets/media/svg/shapes/abstract-2.svg'}})">	
+                    <div class="card-body py-2 px-5">
+                        <div class="d-flex align-items-center justify-content-between p-4 flex-lg-wrap flex-xl-nowrap">
+                            <div class="d-flex flex-column mr-5">
+                                <p class="h4 text-primary mb-2">
+                                    {{ trans('global.create') }} {{ trans('cruds.testimonialsitem') }}
+                                </p>
+                                <p class="text-dark-50" mb-0">
+                                    {{ trans('global.fast_add_text') }} {{ trans('cruds.testimonialsitems') }}
+                                </p>
+                            </div>
+                            <div class="ml-6 ml-lg-0 ml-xxl-6 flex-shrink-0">
+                                <a href="{{ route('admin.testimonialsitems.create') }}" class="btn btn-primary font-weight-bold">
+                                    <i class="fas fa-plus-circle"></i>
+                                    {{ trans('global.add') }}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--CRUD-ITEM-TESTIMONIALSITEM-END-->
+            @endcan
+
+            <!--CRUD-ITEM-APPPROACHITEM-START-->
+            @can('appproachitem_create')
+            <div class="col-xl-6 fast-buttons">
+                <div class="card card-custom mb-5 bgi-no-repeat" style="background-position: left top; background-size: 100% auto; background-image: url({{ 'assets/media/svg/shapes/abstract-2.svg'}})">	
+                    <div class="card-body py-2 px-5">
+                        <div class="d-flex align-items-center justify-content-between p-4 flex-lg-wrap flex-xl-nowrap">
+                            <div class="d-flex flex-column mr-5">
+                                <p class="h4 text-primary mb-2">
+                                    {{ trans('global.create') }} {{ trans('cruds.appproachitem') }}
+                                </p>
+                                <p class="text-dark-50" mb-0">
+                                    {{ trans('global.fast_add_text') }} {{ trans('cruds.appproachitems') }}
+                                </p>
+                            </div>
+                            <div class="ml-6 ml-lg-0 ml-xxl-6 flex-shrink-0">
+                                <a href="{{ route('admin.appproachitems.create') }}" class="btn btn-primary font-weight-bold">
+                                    <i class="fas fa-plus-circle"></i>
+                                    {{ trans('global.add') }}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--CRUD-ITEM-APPPROACHITEM-END-->
+            @endcan
+
+            <!--CRUD-ITEM-PORTFOLIOITEM-START-->
+            @can('portfolioitem_create')
+            <div class="col-xl-6 fast-buttons">
+                <div class="card card-custom mb-5 bgi-no-repeat" style="background-position: left top; background-size: 100% auto; background-image: url({{ 'assets/media/svg/shapes/abstract-2.svg'}})">	
+                    <div class="card-body py-2 px-5">
+                        <div class="d-flex align-items-center justify-content-between p-4 flex-lg-wrap flex-xl-nowrap">
+                            <div class="d-flex flex-column mr-5">
+                                <p class="h4 text-primary mb-2">
+                                    {{ trans('global.create') }} {{ trans('cruds.portfolioitem') }}
+                                </p>
+                                <p class="text-dark-50" mb-0">
+                                    {{ trans('global.fast_add_text') }} {{ trans('cruds.portfolioitems') }}
+                                </p>
+                            </div>
+                            <div class="ml-6 ml-lg-0 ml-xxl-6 flex-shrink-0">
+                                <a href="{{ route('admin.portfolioitems.create') }}" class="btn btn-primary font-weight-bold">
+                                    <i class="fas fa-plus-circle"></i>
+                                    {{ trans('global.add') }}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--CRUD-ITEM-PORTFOLIOITEM-END-->
+            @endcan
+
+            <!--CRUD-ITEM-BLOGITEM-START-->
+            @can('blogitem_create')
+            <div class="col-xl-6 fast-buttons">
+                <div class="card card-custom mb-5 bgi-no-repeat" style="background-position: left top; background-size: 100% auto; background-image: url({{ 'assets/media/svg/shapes/abstract-2.svg'}})">	
+                    <div class="card-body py-2 px-5">
+                        <div class="d-flex align-items-center justify-content-between p-4 flex-lg-wrap flex-xl-nowrap">
+                            <div class="d-flex flex-column mr-5">
+                                <p class="h4 text-primary mb-2">
+                                    {{ trans('global.create') }} {{ trans('cruds.blogitem') }}
+                                </p>
+                                <p class="text-dark-50" mb-0">
+                                    {{ trans('global.fast_add_text') }} {{ trans('cruds.blogitems') }}
+                                </p>
+                            </div>
+                            <div class="ml-6 ml-lg-0 ml-xxl-6 flex-shrink-0">
+                                <a href="{{ route('admin.blogitems.create') }}" class="btn btn-primary font-weight-bold">
+                                    <i class="fas fa-plus-circle"></i>
+                                    {{ trans('global.add') }}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--CRUD-ITEM-BLOGITEM-END-->
+            @endcan
+
+            <!--CRUD-ITEM-REQUESTSITEM-START-->
+            @can('requestsitem_create')
+            <div class="col-xl-6 fast-buttons">
+                <div class="card card-custom mb-5 bgi-no-repeat" style="background-position: left top; background-size: 100% auto; background-image: url({{ 'assets/media/svg/shapes/abstract-2.svg'}})">	
+                    <div class="card-body py-2 px-5">
+                        <div class="d-flex align-items-center justify-content-between p-4 flex-lg-wrap flex-xl-nowrap">
+                            <div class="d-flex flex-column mr-5">
+                                <p class="h4 text-primary mb-2">
+                                    {{ trans('global.create') }} {{ trans('cruds.requestsitem') }}
+                                </p>
+                                <p class="text-dark-50" mb-0">
+                                    {{ trans('global.fast_add_text') }} {{ trans('cruds.requestsitems') }}
+                                </p>
+                            </div>
+                            <div class="ml-6 ml-lg-0 ml-xxl-6 flex-shrink-0">
+                                <a href="{{ route('admin.requestsitems.create') }}" class="btn btn-primary font-weight-bold">
+                                    <i class="fas fa-plus-circle"></i>
+                                    {{ trans('global.add') }}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--CRUD-ITEM-REQUESTSITEM-END-->
+            @endcan
+
+            <!--CRUD-ITEM-SYSTEMPAGESITEM-START-->
+            @can('systempagesitem_create')
+            <div class="col-xl-6 fast-buttons">
+                <div class="card card-custom mb-5 bgi-no-repeat" style="background-position: left top; background-size: 100% auto; background-image: url({{ 'assets/media/svg/shapes/abstract-2.svg'}})">	
+                    <div class="card-body py-2 px-5">
+                        <div class="d-flex align-items-center justify-content-between p-4 flex-lg-wrap flex-xl-nowrap">
+                            <div class="d-flex flex-column mr-5">
+                                <p class="h4 text-primary mb-2">
+                                    {{ trans('global.create') }} {{ trans('cruds.systempagesitem') }}
+                                </p>
+                                <p class="text-dark-50" mb-0">
+                                    {{ trans('global.fast_add_text') }} {{ trans('cruds.systempagesitems') }}
+                                </p>
+                            </div>
+                            <div class="ml-6 ml-lg-0 ml-xxl-6 flex-shrink-0">
+                                <a href="{{ route('admin.systempagesitems.create') }}" class="btn btn-primary font-weight-bold">
+                                    <i class="fas fa-plus-circle"></i>
+                                    {{ trans('global.add') }}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--CRUD-ITEM-SYSTEMPAGESITEM-END-->
+            @endcan
+
             <!--CRUD-NEW-ITEM-->
         </div>
 

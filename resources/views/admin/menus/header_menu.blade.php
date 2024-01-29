@@ -115,6 +115,86 @@
                 </a>
                 <div class="menu-submenu menu-submenu-classic menu-submenu-left">
                     <ul class="menu-subnav">
+                        <!--CRUD-ITEM-SERVICEITEMS START-->
+                        @can('serviceitem_access')
+                        <li class="{{ request()->is(config('cms.admin_panel_url')."/module/serviceitems") || request()->is(config('cms.admin_panel_url')."/module/serviceitems/*") ? "menu-item-active" : "" }} menu-item" aria-haspopup="true">
+                            <a href="{{ route("admin.serviceitems.index") }}" title="{{ trans('cruds.serviceitems') }}" class="menu-link">
+                                <i class="menu-icon la la-file"></i>
+                                <span class="menu-text">{{ trans('cruds.serviceitems') }}</span>
+                            </a>
+                        </li>
+                        @endcan
+                        <!--CRUD-ITEM-SERVICEITEMS END-->
+                        <!--CRUD-ITEM-WHYUSHOMEPAGEITEMS START-->
+                        @can('whyushomepageitem_access')
+                        <li class="{{ request()->is(config('cms.admin_panel_url')."/module/whyushomepageitems") || request()->is(config('cms.admin_panel_url')."/module/whyushomepageitems/*") ? "menu-item-active" : "" }} menu-item" aria-haspopup="true">
+                            <a href="{{ route("admin.whyushomepageitems.index") }}" title="{{ trans('cruds.whyushomepageitems') }}" class="menu-link">
+                                <i class="menu-icon la la-file"></i>
+                                <span class="menu-text">{{ trans('cruds.whyushomepageitems') }}</span>
+                            </a>
+                        </li>
+                        @endcan
+                        <!--CRUD-ITEM-WHYUSHOMEPAGEITEMS END-->
+                        <!--CRUD-ITEM-TESTIMONIALSITEMS START-->
+                        @can('testimonialsitem_access')
+                        <li class="{{ request()->is(config('cms.admin_panel_url')."/module/testimonialsitems") || request()->is(config('cms.admin_panel_url')."/module/testimonialsitems/*") ? "menu-item-active" : "" }} menu-item" aria-haspopup="true">
+                            <a href="{{ route("admin.testimonialsitems.index") }}" title="{{ trans('cruds.testimonialsitems') }}" class="menu-link">
+                                <i class="menu-icon la la-file"></i>
+                                <span class="menu-text">{{ trans('cruds.testimonialsitems') }}</span>
+                            </a>
+                        </li>
+                        @endcan
+                        <!--CRUD-ITEM-TESTIMONIALSITEMS END-->
+                        <!--CRUD-ITEM-APPPROACHITEMS START-->
+                        @can('appproachitem_access')
+                        <li class="{{ request()->is(config('cms.admin_panel_url')."/module/appproachitems") || request()->is(config('cms.admin_panel_url')."/module/appproachitems/*") ? "menu-item-active" : "" }} menu-item" aria-haspopup="true">
+                            <a href="{{ route("admin.appproachitems.index") }}" title="{{ trans('cruds.appproachitems') }}" class="menu-link">
+                                <i class="menu-icon la la-file"></i>
+                                <span class="menu-text">{{ trans('cruds.appproachitems') }}</span>
+                            </a>
+                        </li>
+                        @endcan
+                        <!--CRUD-ITEM-APPPROACHITEMS END-->
+                        <!--CRUD-ITEM-PORTFOLIOITEMS START-->
+                        @can('portfolioitem_access')
+                        <li class="{{ request()->is(config('cms.admin_panel_url')."/module/portfolioitems") || request()->is(config('cms.admin_panel_url')."/module/portfolioitems/*") ? "menu-item-active" : "" }} menu-item" aria-haspopup="true">
+                            <a href="{{ route("admin.portfolioitems.index") }}" title="{{ trans('cruds.portfolioitems') }}" class="menu-link">
+                                <i class="menu-icon la la-file"></i>
+                                <span class="menu-text">{{ trans('cruds.portfolioitems') }}</span>
+                            </a>
+                        </li>
+                        @endcan
+                        <!--CRUD-ITEM-PORTFOLIOITEMS END-->
+                        <!--CRUD-ITEM-BLOGITEMS START-->
+                        @can('blogitem_access')
+                        <li class="{{ request()->is(config('cms.admin_panel_url')."/module/blogitems") || request()->is(config('cms.admin_panel_url')."/module/blogitems/*") ? "menu-item-active" : "" }} menu-item" aria-haspopup="true">
+                            <a href="{{ route("admin.blogitems.index") }}" title="{{ trans('cruds.blogitems') }}" class="menu-link">
+                                <i class="menu-icon la la-file"></i>
+                                <span class="menu-text">{{ trans('cruds.blogitems') }}</span>
+                            </a>
+                        </li>
+                        @endcan
+                        <!--CRUD-ITEM-BLOGITEMS END-->
+                        <!--CRUD-ITEM-REQUESTSITEMS START-->
+                        @can('requestsitem_access')
+                        <li class="{{ request()->is(config('cms.admin_panel_url')."/module/requestsitems") || request()->is(config('cms.admin_panel_url')."/module/requestsitems/*") ? "menu-item-active" : "" }} menu-item" aria-haspopup="true">
+                            <a href="{{ route("admin.requestsitems.index") }}" title="{{ trans('cruds.requestsitems') }}" class="menu-link">
+                                <i class="menu-icon la la-file"></i>
+                                <span class="menu-text">{{ trans('cruds.requestsitems') }}</span>
+                            </a>
+                        </li>
+                        @endcan
+                        <!--CRUD-ITEM-REQUESTSITEMS END-->
+                        <!--CRUD-ITEM-SYSTEMPAGESITEMS START-->
+                        @can('systempagesitem_access')
+                        <li class="{{ request()->is(config('cms.admin_panel_url')."/module/systempagesitems") || request()->is(config('cms.admin_panel_url')."/module/systempagesitems/*") ? "menu-item-active" : "" }} menu-item" aria-haspopup="true">
+                            <a href="{{ route("admin.systempagesitems.index") }}" title="{{ trans('cruds.systempagesitems') }}" class="menu-link">
+                                <i class="menu-icon la la-file"></i>
+                                <span class="menu-text">{{ trans('cruds.systempagesitems') }}</span>
+                            </a>
+                        </li>
+                        @endcan
+                        <!--CRUD-ITEM-SYSTEMPAGESITEMS END-->
                         <!--CRUD-NEW-ITEM-->
                     </ul>
                 </div>

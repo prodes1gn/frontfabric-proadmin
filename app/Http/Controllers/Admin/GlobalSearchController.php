@@ -10,6 +10,78 @@ class GlobalSearchController extends Controller {
 
     private $models = [
         #CRUD-NEW-ITEM
+        #CRUD-ITEM-SYSTEMPAGESITEM-START
+        'SystempagesitemTranslation' => [
+            'systempagesitems',
+            'cruds.systempagesitems',
+            'systempagesitem_edit',
+            'systempagesitem_id',
+            'module',
+        ],
+        #CRUD-ITEM-SYSTEMPAGESITEM-END
+        #CRUD-ITEM-REQUESTSITEM-START
+        'RequestsitemTranslation' => [
+            'requestsitems',
+            'cruds.requestsitems',
+            'requestsitem_edit',
+            'requestsitem_id',
+            'module',
+        ],
+        #CRUD-ITEM-REQUESTSITEM-END
+        #CRUD-ITEM-BLOGITEM-START
+        'BlogitemTranslation' => [
+            'blogitems',
+            'cruds.blogitems',
+            'blogitem_edit',
+            'blogitem_id',
+            'module',
+        ],
+        #CRUD-ITEM-BLOGITEM-END
+        #CRUD-ITEM-PORTFOLIOITEM-START
+        'PortfolioitemTranslation' => [
+            'portfolioitems',
+            'cruds.portfolioitems',
+            'portfolioitem_edit',
+            'portfolioitem_id',
+            'module',
+        ],
+        #CRUD-ITEM-PORTFOLIOITEM-END
+        #CRUD-ITEM-APPPROACHITEM-START
+        'AppproachitemTranslation' => [
+            'appproachitems',
+            'cruds.appproachitems',
+            'appproachitem_edit',
+            'appproachitem_id',
+            'module',
+        ],
+        #CRUD-ITEM-APPPROACHITEM-END
+        #CRUD-ITEM-TESTIMONIALSITEM-START
+        'TestimonialsitemTranslation' => [
+            'testimonialsitems',
+            'cruds.testimonialsitems',
+            'testimonialsitem_edit',
+            'testimonialsitem_id',
+            'module',
+        ],
+        #CRUD-ITEM-TESTIMONIALSITEM-END
+        #CRUD-ITEM-WHYUSHOMEPAGEITEM-START
+        'WhyushomepageitemTranslation' => [
+            'whyushomepageitems',
+            'cruds.whyushomepageitems',
+            'whyushomepageitem_edit',
+            'whyushomepageitem_id',
+            'module',
+        ],
+        #CRUD-ITEM-WHYUSHOMEPAGEITEM-END
+        #CRUD-ITEM-SERVICEITEM-START
+        'ServiceitemTranslation' => [
+            'serviceitems',
+            'cruds.serviceitems',
+            'serviceitem_edit',
+            'serviceitem_id',
+            'module',
+        ],
+        #CRUD-ITEM-SERVICEITEM-END
         'RoleTranslation' => [
             'roles',
             'global.roles',
