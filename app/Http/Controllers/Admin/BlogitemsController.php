@@ -79,6 +79,9 @@ class BlogitemsController extends AdminController {
         // #CRUD-FIELD-SEOIMAGE-START
         $this->storeImage($blogitem, $request, 'seoimage', 'seoimage-' . $request->lang);
         // #CRUD-FIELD-SEOIMAGE-END
+        // #CRUD-FIELD-IMAGE-START
+        $this->storeImage($blogitem, $request, 'image', 'image-' . $request->lang);
+        // #CRUD-FIELD-IMAGE-END
         // #ADD-STORE-METHOD-MEDIA
         // #REDIRECT
         return redirect()->route('admin.blogitems.index')->with('message', trans('global.create_success'));
@@ -105,7 +108,7 @@ class BlogitemsController extends AdminController {
         // #NEW-FIELD-UPDATE-METHOD-DATA
         $this->slugMake($request, 'slug');
         $request->merge([/* NEW-FIELD-UPDATE-METHOD-MERGE */]);
-        $non_lang = [/* NEW-FIELD-UPDATE-METHOD-NONLANG */];
+        $non_lang = ['date', 'readtime', /* NEW-FIELD-UPDATE-METHOD-NONLANG */];
         $blogitem->update($request->only($non_lang));
         $blogitem->update([$request->lang => $request->except($non_lang)]);
         // #NEW-FIELD-UPDATE-METHOD-SYNC
@@ -113,6 +116,9 @@ class BlogitemsController extends AdminController {
         // #CRUD-FIELD-SEOIMAGE-START
         $this->updateImage($blogitem, $request, 'seoimage', 'seoimage-' . $request->lang);
         // #CRUD-FIELD-SEOIMAGE-END
+        // #CRUD-FIELD-IMAGE-START
+        $this->updateImage($blogitem, $request, 'image', 'image-' . $request->lang);
+        // #CRUD-FIELD-IMAGE-END
         // #ADD-UPDATE-METHOD-MEDIA
         // #REDIRECT
         if ($request->action == 1) {
@@ -169,6 +175,7 @@ class BlogitemsController extends AdminController {
         $blogitem->deleteTranslations($request->lang);
         // #ADD-DELETE-METHOD-GALLERY
         $blogitem->clearMediaCollection('seoimage-' . $request->lang);
+        $blogitem->clearMediaCollection('image-' . $request->lang);
         // #ADD-DELETE-METHOD-MEDIA
 
         // #REDIRECT

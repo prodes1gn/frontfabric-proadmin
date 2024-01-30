@@ -35,7 +35,15 @@ class Blogitem extends Model implements TranslatableContract, HasMedia, Editable
         'created_at',
         'updated_at',
         'deleted_at',
+                    #CRUD-FIELD-DATE-START
+        'date',
+            #CRUD-FIELD-DATE-END
+                    #CRUD-FIELD-READTIME-START
+        'readtime',
+            #CRUD-FIELD-READTIME-END
             #CRUD-NEW-FIELD
+
+
     ];
     public $translatedAttributes = [
         'name',
@@ -69,6 +77,23 @@ class Blogitem extends Model implements TranslatableContract, HasMedia, Editable
             request()->lang = config('translatable.locale');
         }
         $file = $this->getMedia('seoimage-' . request()->lang)->last();
+        if ($file) {
+            if (!File::exists($file->getPath())) {
+                $file = null;
+            }
+        } else {
+            $file = null;
+        }
+
+        return $file;
+    }
+    
+    // #CRUD-FIELD-IMAGE
+    public function getImageAttribute() {
+        if (!request()->lang) {
+            request()->lang = config('translatable.locale');
+        }
+        $file = $this->getMedia('image-' . request()->lang)->last();
         if ($file) {
             if (!File::exists($file->getPath())) {
                 $file = null;

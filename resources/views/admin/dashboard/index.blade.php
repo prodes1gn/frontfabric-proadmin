@@ -373,6 +373,60 @@
             <!--CRUD-ITEM-SERVICEPOINTITEM-END-->
             @endcan
 
+            <!--CRUD-ITEM-VALUESITEM-START-->
+            @can('valuesitem_create')
+            <div class="col-xl-6 fast-buttons">
+                <div class="card card-custom mb-5 bgi-no-repeat" style="background-position: left top; background-size: 100% auto; background-image: url({{ 'assets/media/svg/shapes/abstract-2.svg'}})">	
+                    <div class="card-body py-2 px-5">
+                        <div class="d-flex align-items-center justify-content-between p-4 flex-lg-wrap flex-xl-nowrap">
+                            <div class="d-flex flex-column mr-5">
+                                <p class="h4 text-primary mb-2">
+                                    {{ trans('global.create') }} {{ trans('cruds.valuesitem') }}
+                                </p>
+                                <p class="text-dark-50" mb-0">
+                                    {{ trans('global.fast_add_text') }} {{ trans('cruds.valuesitems') }}
+                                </p>
+                            </div>
+                            <div class="ml-6 ml-lg-0 ml-xxl-6 flex-shrink-0">
+                                <a href="{{ route('admin.valuesitems.create') }}" class="btn btn-primary font-weight-bold">
+                                    <i class="fas fa-plus-circle"></i>
+                                    {{ trans('global.add') }}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--CRUD-ITEM-VALUESITEM-END-->
+            @endcan
+
+            <!--CRUD-ITEM-BLOGCATEGORYITEM-START-->
+            @can('blogcategoryitem_create')
+            <div class="col-xl-6 fast-buttons">
+                <div class="card card-custom mb-5 bgi-no-repeat" style="background-position: left top; background-size: 100% auto; background-image: url({{ 'assets/media/svg/shapes/abstract-2.svg'}})">	
+                    <div class="card-body py-2 px-5">
+                        <div class="d-flex align-items-center justify-content-between p-4 flex-lg-wrap flex-xl-nowrap">
+                            <div class="d-flex flex-column mr-5">
+                                <p class="h4 text-primary mb-2">
+                                    {{ trans('global.create') }} {{ trans('cruds.blogcategoryitem') }}
+                                </p>
+                                <p class="text-dark-50" mb-0">
+                                    {{ trans('global.fast_add_text') }} {{ trans('cruds.blogcategoryitems') }}
+                                </p>
+                            </div>
+                            <div class="ml-6 ml-lg-0 ml-xxl-6 flex-shrink-0">
+                                <a href="{{ route('admin.blogcategoryitems.create') }}" class="btn btn-primary font-weight-bold">
+                                    <i class="fas fa-plus-circle"></i>
+                                    {{ trans('global.add') }}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--CRUD-ITEM-BLOGCATEGORYITEM-END-->
+            @endcan
+
             <!--CRUD-NEW-ITEM-->
         </div>
 

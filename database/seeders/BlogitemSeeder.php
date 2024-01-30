@@ -20,6 +20,8 @@ class BlogitemSeeder extends Seeder {
         for ($i = 1; $i < 20; $i++) {
             $array = [
                 'order' => $i,
+                    'date' => fake()->date(),
+                    'readtime' => fake()->text(255),
                     #CRUD-NEW-FIELD
             ];
             foreach (config('translatable.locales') as $locale) {
@@ -39,6 +41,10 @@ class BlogitemSeeder extends Seeder {
                 $imageUrl = $faker->imageUrl(640, 480);
                 $blogitem->addMediaFromUrl($imageUrl)->toMediaCollection('seoimage-' . $locale);
             }
+                    $blogitem = Blogitem::latest()->first();
+            $faker = Faker::create();
+            $imageUrl = $faker->imageUrl(640, 480);
+            $blogitem->addMediaFromUrl($imageUrl)->toMediaCollection('image-' . config('translatable.locale'));
                     #CRUD-NEW-SEEDER-FIELD
         }
     }

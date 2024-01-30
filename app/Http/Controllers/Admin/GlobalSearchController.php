@@ -10,6 +10,24 @@ class GlobalSearchController extends Controller {
 
     private $models = [
         #CRUD-NEW-ITEM
+        #CRUD-ITEM-BLOGCATEGORYITEM-START
+        'BlogcategoryitemTranslation' => [
+            'blogcategoryitems',
+            'cruds.blogcategoryitems',
+            'blogcategoryitem_edit',
+            'blogcategoryitem_id',
+            'module',
+        ],
+        #CRUD-ITEM-BLOGCATEGORYITEM-END
+        #CRUD-ITEM-VALUESITEM-START
+        'ValuesitemTranslation' => [
+            'valuesitems',
+            'cruds.valuesitems',
+            'valuesitem_edit',
+            'valuesitem_id',
+            'module',
+        ],
+        #CRUD-ITEM-VALUESITEM-END
         #CRUD-ITEM-SERVICEPOINTITEM-START
         'ServicepointitemTranslation' => [
             'servicepointitems',

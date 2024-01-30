@@ -51,7 +51,30 @@ class StoreBlogitemRequest extends FormRequest {
                 
             ],
                 #CRUD-FIELD-SEOTYPE-END
+                #CRUD-FIELD-IMAGE-START
+            'image' => [
+            ],
+                #CRUD-FIELD-IMAGE-END
+                #CRUD-FIELD-DATE-START
+            'date' => [
+                'nullable',
+                'date',
+                'date_format:Y-m-d',
+                'required',
+            ],
+                #CRUD-FIELD-DATE-END
+                #CRUD-FIELD-READTIME-START
+            'readtime' => [
+                'nullable',
+                'max:255',
+                
+            ],
+                #CRUD-FIELD-READTIME-END
                 #CRUD-NEW-FIELD
+
+
+
+
 
 
 

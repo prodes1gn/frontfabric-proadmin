@@ -16,7 +16,7 @@ use Dotlogics\Grapesjs\App\Traits\EditableTrait;
 use Dotlogics\Grapesjs\App\Contracts\Editable;
 use Illuminate\Support\Facades\File;
 
-class Contactspage extends Model implements TranslatableContract, HasMedia, Editable {
+class Blogcategoryitem extends Model implements TranslatableContract, HasMedia, Editable {
 
     use SoftDeletes;
     use HasFactory;
@@ -24,7 +24,7 @@ class Contactspage extends Model implements TranslatableContract, HasMedia, Edit
     use Translatable;
     use EditableTrait;
 
-    protected $table = 'contactspages';
+    protected $table = 'blogcategoryitems';
     protected $dates = [
         'created_at',
         'updated_at',
@@ -39,27 +39,7 @@ class Contactspage extends Model implements TranslatableContract, HasMedia, Edit
     ];
     public $translatedAttributes = [
         'name',
-                    #CRUD-FIELD-SLUG-START
-        'slug',
-            #CRUD-FIELD-SLUG-END
-                    #CRUD-FIELD-SEOTITLE-START
-        'seotitle',
-            #CRUD-FIELD-SEOTITLE-END
-                    #CRUD-FIELD-SEODESCRIPTION-START
-        'seodescription',
-            #CRUD-FIELD-SEODESCRIPTION-END
-                    #CRUD-FIELD-SEOTYPE-START
-        'seotype',
-            #CRUD-FIELD-SEOTYPE-END
-                    #CRUD-FIELD-TEXT-START
-        'text',
-            #CRUD-FIELD-TEXT-END
             #CRUD-NEW-LANG-FIELD
-
-
-
-
-
     ];
 
     public function registerMediaConversions(Media $media = null): void {
@@ -67,22 +47,5 @@ class Contactspage extends Model implements TranslatableContract, HasMedia, Edit
         $this->addMediaConversion('preview')->fit(Manipulations::FIT_MAX, Setting::get('gallery_preview_size'), Setting::get('gallery_preview_size'));
     }
 
-    // #CRUD-FIELD-SEOIMAGE
-    public function getSeoimageAttribute() {
-        if (!request()->lang) {
-            request()->lang = config('translatable.locale');
-        }
-        $file = $this->getMedia('seoimage-' . request()->lang)->last();
-        if ($file) {
-            if (!File::exists($file->getPath())) {
-                $file = null;
-            }
-        } else {
-            $file = null;
-        }
-
-        return $file;
-    }
-    
     #CRUD-NEW-RELATION
 }

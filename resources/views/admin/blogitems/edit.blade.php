@@ -89,6 +89,56 @@
                 <!--CRUD-NEW-LANG-FIELD-->
             </div>
             <div class="col-lg-4" style="{{ ($lang != config('translatable.locale')) ? "visibility:hidden" : ""  }}">
+                <!--CRUD-FIELD-IMAGE-START-->
+<div class="form-group {{ $errors->has('image') ? 'has-error' : '' }}">
+                    <label for="image">{{ trans('cruds.image') }} <span class="required"></span></label>
+                    <div class="dropzone dropzone-default dropzone-primary dz-clickable" id="image-dropzone">
+                        <div class="dropzone-msg dz-message needsclick">
+                            <h3 class="dropzone-msg-title">{{ trans('global.drop_files_here_to_upload') }}</h3>
+                        </div>
+                    </div>
+                    @if($errors->has('image'))
+                    <span class="help-block" role="alert">{{ $errors->first('image') }}</span>
+                    @endif
+                    <span class="form-text text-primary">{{ trans('global.media_upload_formats') }}: <code>{{ Setting::get('gallery_upload_formats'); }}</code></span>
+                    <span class="form-text text-primary">{{ trans('global.media_max_resolution') }}: <code>{{ Setting::get('gallery_max_width'); }} x {{ Setting::get('gallery_max_height'); }}</code></span>
+                    <span class="form-text text-primary">{{ trans('global.media_max_files') }}: <code>1</code></span>
+                    <span class="form-text text-primary">{{ trans('global.media_max_filesize') }}: <code>{{ Setting::get('gallery_max_filesize'); }} MB</code></span>
+                </div>
+                <!--CRUD-FIELD-IMAGE-END-->
+                <!--CRUD-FIELD-DATE-START-->
+                <div class="form-group {{ $errors->has('date') ? 'has-error' : '' }}">
+                    <label for="date">{{ trans('cruds.date') }} <span class="required">*</span></label>
+                    <div class="input-group date">
+                        <input class="form-control form-control-solid datepicker" readonly="readonly" type="text" name="date" value="{{ old('date', $blogitem->date) }}" placeholder="{{ trans('global.enter') }} {{ trans('cruds.date') }}">
+                        <div class="input-group-append">
+                            <span class="input-group-text">
+                                <i class="la la-calendar"></i>
+                            </span>
+                        </div>
+                    </div>
+                    @if($errors->has('date'))
+                    <span class="help-block" role="alert">
+                        @foreach($errors->get('date') as $message)
+                        {{ $message }}<br />
+                        @endforeach
+                    </span>
+                    @endif
+                </div>
+                <!--CRUD-FIELD-DATE-END-->
+                <!--CRUD-FIELD-READTIME-START-->
+                <div class="form-group {{ $errors->has('readtime') ? 'has-error' : '' }}">
+                    <label for="readtime">{{ trans('cruds.readtime') }} <span class="required"></span></label>
+                    <input class="form-control form-control-solid maxlength" maxlength="255" type="text" name="readtime" value="{{ old('readtime', $blogitem->readtime) }}" placeholder="{{ trans('global.enter') }} {{ trans('cruds.readtime') }}">
+                    @if($errors->has('readtime'))
+                    <span class="help-block" role="alert">
+                        @foreach($errors->get('readtime') as $message)
+                        {{ $message }}<br />
+                        @endforeach
+                    </span>
+                    @endif
+                </div>
+                <!--CRUD-FIELD-READTIME-END-->
                 <!--CRUD-NEW-FIELD-->
             </div>
             <!--CRUD-PAGEBUILDER-MODULE-->
@@ -273,6 +323,64 @@
 
 </script>
 <!--CRUD-FIELD-SEOIMAGE-JS-END-->
+<!--CRUD-FIELD-IMAGE-JS-START-->
+<script>
+    var uploadedGalleryMap = {}
+    Dropzone.options.imageDropzone = {
+        url: '<?= route('admin.blogitem.storeMedia') ?>',
+        maxFilesize: <?= Setting::get('gallery_max_filesize'); ?>, // MB
+        acceptedFiles: '<?= Setting::get('gallery_upload_formats'); ?>',
+        maxFiles: 1,
+        addRemoveLinks: true,
+        headers: {
+            'X-CSRF-TOKEN': "{{ csrf_token() }}"
+        },
+        params: {
+            size: <?= Setting::get('gallery_max_filesize'); ?>,
+            width: <?= Setting::get('gallery_max_width'); ?>,
+            height: <?= Setting::get('gallery_max_height'); ?>
+        },
+        success: function (file, response) {
+            $('form').find('input[name="image"]').remove()
+            $('form').append('<input type="hidden" name="image" value="' + response.name + '">')
+        },
+        removedfile: function (file) {
+            file.previewElement.remove()
+            if (file.status !== 'error') {
+                $('form').find('input[name="image"]').remove()
+                this.options.maxFiles = this.options.maxFiles + 1
+            }
+        },
+        init: function () {
+<?php if (isset($blogitem) && $blogitem->image) : ?>
+                var file = <?= json_encode($blogitem->image) ?>;
+                this.options.addedfile.call(this, file)
+                this.options.thumbnail.call(this, file, file.preview ?? file.preview_url)
+                file.previewElement.classList.add('dz-complete')
+                $('form').append('<input type="hidden" name="image" value="' + file.file_name + '">')
+                this.options.maxFiles = this.options.maxFiles - 1
+<?php endif; ?>
+        },
+        error: function (file, response) {
+            if ($.type(response) === 'string') {
+                var message = response //dropzone sends it's own error messages in string
+            } else {
+                var message = response.errors.file
+            }
+            file.previewElement.classList.add('dz-error')
+            _ref = file.previewElement.querySelectorAll('[data-dz-errormessage]')
+            _results = []
+            for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+                node = _ref[_i]
+                _results.push(node.textContent = message)
+            }
+
+            return _results
+        }
+    }
+
+</script>
+<!--CRUD-FIELD-IMAGE-JS-END-->
 <!--CRUD-NEW-FIELD-JS-->
 @parent
 @endsection

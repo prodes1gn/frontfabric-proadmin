@@ -182,6 +182,26 @@ Route::group(['as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth',
         });
         Route::resource('servicepointitems', 'ServicepointitemsController');
 
+        // #CRUD-ITEM-VALUESITEMS
+        Route::group(['prefix' => 'valuesitems'], function () {
+        // #CRUD-ITEM-VALUESITEMS-FILTERS
+        // #CRUD-ITEM-VALUESITEMS-PAGEBUILDER
+        Route::post('storeMedia', 'ValuesitemsController@storeMedia')->name('valuesitem.storeMedia');
+        Route::post('move/{valuesitem}', 'ValuesitemsController@move')->name('valuesitem.move');
+        Route::delete('delete/{valuesitem}', 'ValuesitemsController@delete')->name('valuesitem.delete');
+        });
+        Route::resource('valuesitems', 'ValuesitemsController');
+
+        // #CRUD-ITEM-BLOGCATEGORYITEMS
+        Route::group(['prefix' => 'blogcategoryitems'], function () {
+        // #CRUD-ITEM-BLOGCATEGORYITEMS-FILTERS
+        // #CRUD-ITEM-BLOGCATEGORYITEMS-PAGEBUILDER
+        Route::post('storeMedia', 'BlogcategoryitemsController@storeMedia')->name('blogcategoryitem.storeMedia');
+        Route::post('move/{blogcategoryitem}', 'BlogcategoryitemsController@move')->name('blogcategoryitem.move');
+        Route::delete('delete/{blogcategoryitem}', 'BlogcategoryitemsController@delete')->name('blogcategoryitem.delete');
+        });
+        Route::resource('blogcategoryitems', 'BlogcategoryitemsController');
+
         #CRUD-NEW-ITEM
     });
 });

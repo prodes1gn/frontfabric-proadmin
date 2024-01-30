@@ -89,6 +89,36 @@
                     </td>
                 </tr>
                 <!--CRUD-FIELD-SEOTYPE END-->
+                <!--CRUD-FIELD-IMAGE START-->
+                <tr>
+                    <th style="width:20%;" class="text-right">
+                        {{ trans('cruds.image') }}
+                    </th>
+                    <td>
+                        <img src="{{ CMS::img($blogitem, 'image', true) }}" height="100px;">
+                    </td>
+                </tr>
+                <!--CRUD-FIELD-IMAGE END-->
+                <!--CRUD-FIELD-DATE START-->
+                <tr>
+                    <th style="width:20%;" class="text-right">
+                        {{ trans('cruds.date') }}
+                    </th>
+                    <td>
+                        {{ $blogitem->date }}
+                    </td>
+                </tr>
+                <!--CRUD-FIELD-DATE END-->
+                <!--CRUD-FIELD-READTIME START-->
+                <tr>
+                    <th style="width:20%;" class="text-right">
+                        {{ trans('cruds.readtime') }}
+                    </th>
+                    <td>
+                        {{ $blogitem->readtime }}
+                    </td>
+                </tr>
+                <!--CRUD-FIELD-READTIME END-->
                 <!--CRUD-NEW-FIELD-->
             </table>
         </div>

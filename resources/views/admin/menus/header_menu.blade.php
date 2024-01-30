@@ -205,6 +205,26 @@
                         </li>
                         @endcan
                         <!--CRUD-ITEM-SERVICEPOINTITEMS END-->
+                        <!--CRUD-ITEM-VALUESITEMS START-->
+                        @can('valuesitem_access')
+                        <li class="{{ request()->is(config('cms.admin_panel_url')."/module/valuesitems") || request()->is(config('cms.admin_panel_url')."/module/valuesitems/*") ? "menu-item-active" : "" }} menu-item" aria-haspopup="true">
+                            <a href="{{ route("admin.valuesitems.index") }}" title="{{ trans('cruds.valuesitems') }}" class="menu-link">
+                                <i class="menu-icon la la-file"></i>
+                                <span class="menu-text">{{ trans('cruds.valuesitems') }}</span>
+                            </a>
+                        </li>
+                        @endcan
+                        <!--CRUD-ITEM-VALUESITEMS END-->
+                        <!--CRUD-ITEM-BLOGCATEGORYITEMS START-->
+                        @can('blogcategoryitem_access')
+                        <li class="{{ request()->is(config('cms.admin_panel_url')."/module/blogcategoryitems") || request()->is(config('cms.admin_panel_url')."/module/blogcategoryitems/*") ? "menu-item-active" : "" }} menu-item" aria-haspopup="true">
+                            <a href="{{ route("admin.blogcategoryitems.index") }}" title="{{ trans('cruds.blogcategoryitems') }}" class="menu-link">
+                                <i class="menu-icon la la-file"></i>
+                                <span class="menu-text">{{ trans('cruds.blogcategoryitems') }}</span>
+                            </a>
+                        </li>
+                        @endcan
+                        <!--CRUD-ITEM-BLOGCATEGORYITEMS END-->
                         <!--CRUD-NEW-ITEM-->
                     </ul>
                 </div>
