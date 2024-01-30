@@ -172,6 +172,16 @@ Route::group(['as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth',
         });
         Route::resource('systempagesitems', 'SystempagesitemsController');
 
+        // #CRUD-ITEM-SERVICEPOINTITEMS
+        Route::group(['prefix' => 'servicepointitems'], function () {
+        // #CRUD-ITEM-SERVICEPOINTITEMS-FILTERS
+        // #CRUD-ITEM-SERVICEPOINTITEMS-PAGEBUILDER
+        Route::post('storeMedia', 'ServicepointitemsController@storeMedia')->name('servicepointitem.storeMedia');
+        Route::post('move/{servicepointitem}', 'ServicepointitemsController@move')->name('servicepointitem.move');
+        Route::delete('delete/{servicepointitem}', 'ServicepointitemsController@delete')->name('servicepointitem.delete');
+        });
+        Route::resource('servicepointitems', 'ServicepointitemsController');
+
         #CRUD-NEW-ITEM
     });
 });

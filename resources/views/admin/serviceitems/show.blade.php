@@ -89,6 +89,48 @@
                     </td>
                 </tr>
                 <!--CRUD-FIELD-SEOTYPE END-->
+                <!--CRUD-FIELD-HOMETEXT START-->
+                <tr>
+                    <th style="width:20%;" class="text-right">
+                        {{ trans('cruds.hometext') }}
+                    </th>
+                    <td>
+                        {{ $serviceitem->hometext }}
+                    </td>
+                </tr>
+                <!--CRUD-FIELD-HOMETEXT END-->
+                <!--CRUD-FIELD-TEXT START-->
+                <tr>
+                    <th style="width:20%;" class="text-right">
+                        {{ trans('cruds.text') }}
+                    </th>
+                    <td>
+                        {!! $serviceitem->text !!}
+                    </td>
+                </tr>
+                <!--CRUD-FIELD-TEXT END-->
+                <!--CRUD-FIELD-SERVICEPOINTDROPDOWN START-->
+                <tr>
+                    <th style="width:20%;" class="text-right">
+                        {{ trans('cruds.servicepointdropdown') }}
+                    </th>
+                    <td>
+                        @foreach($serviceitem->servicepointdropdown as $row)
+                        <span class="label label-primary label-inline font-weight-bold mr-2">{{ $row->name }}</span>
+                        @endforeach
+                    </td>
+                </tr>
+                <!--CRUD-FIELD-SERVICEPOINTDROPDOWN END-->
+                <!--CRUD-FIELD-IMAGE START-->
+                <tr>
+                    <th style="width:20%;" class="text-right">
+                        {{ trans('cruds.image') }}
+                    </th>
+                    <td>
+                        <img src="{{ CMS::img($serviceitem, 'image', true) }}" height="100px;">
+                    </td>
+                </tr>
+                <!--CRUD-FIELD-IMAGE END-->
                 <!--CRUD-NEW-FIELD-->
             </table>
         </div>

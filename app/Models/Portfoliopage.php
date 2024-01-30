@@ -51,7 +51,11 @@ class Portfoliopage extends Model implements TranslatableContract, HasMedia, Edi
                     #CRUD-FIELD-SEOTYPE-START
         'seotype',
             #CRUD-FIELD-SEOTYPE-END
+                    #CRUD-FIELD-TEXT-START
+        'text',
+            #CRUD-FIELD-TEXT-END
             #CRUD-NEW-LANG-FIELD
+
 
 
 

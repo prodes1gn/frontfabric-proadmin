@@ -39,6 +39,10 @@ class PortfolioitemSeeder extends Seeder {
                 $imageUrl = $faker->imageUrl(640, 480);
                 $portfolioitem->addMediaFromUrl($imageUrl)->toMediaCollection('seoimage-' . $locale);
             }
+                    $portfolioitem = Portfolioitem::latest()->first();
+            $faker = Faker::create();
+            $imageUrl = $faker->imageUrl(640, 480);
+            $portfolioitem->addMediaFromUrl($imageUrl)->toMediaCollection('image-' . config('translatable.locale'));
                     #CRUD-NEW-SEEDER-FIELD
         }
     }

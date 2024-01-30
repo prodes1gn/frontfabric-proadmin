@@ -53,6 +53,7 @@ class AboutuspagesController extends AdminController {
         $aboutuspage->update($request->only($non_lang));
         $aboutuspage->update([$request->lang => $request->except($non_lang)]);
         // #NEW-FIELD-UPDATE-METHOD-SYNC
+        $this->updateGallery($aboutuspage, $request, 'gallery', 'gallery-' . $request->lang);
         // #ADD-UPDATE-METHOD-GALLERY
         // #CRUD-FIELD-SEOIMAGE-START
         $this->updateImage($aboutuspage, $request, 'seoimage', 'seoimage-' . $request->lang);
@@ -74,6 +75,7 @@ class AboutuspagesController extends AdminController {
         
         // #DELETE
         $aboutuspage->deleteTranslations($request->lang);
+        $aboutuspage->clearMediaCollection('gallery-' . $request->lang);
         // #ADD-DELETE-METHOD-GALLERY
         $aboutuspage->clearMediaCollection('seoimage-' . $request->lang);
         // #ADD-DELETE-METHOD-MEDIA

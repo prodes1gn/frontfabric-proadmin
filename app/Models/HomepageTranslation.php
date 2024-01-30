@@ -22,7 +22,11 @@ class HomepageTranslation extends Model {
                     #CRUD-FIELD-SEOTYPE-START
         'seotype',
             #CRUD-FIELD-SEOTYPE-END
+                    #CRUD-FIELD-HEROTEXT-START
+        'herotext',
+            #CRUD-FIELD-HEROTEXT-END
             #CRUD-NEW-LANG-FIELD
+
 
 
 

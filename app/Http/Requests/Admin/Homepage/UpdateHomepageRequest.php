@@ -49,7 +49,21 @@ class UpdateHomepageRequest extends FormRequest {
                 
             ],
                 #CRUD-FIELD-SEOTYPE-END
+                #CRUD-FIELD-HEROIMAGE-START
+            'heroimage' => [
+            ],
+                #CRUD-FIELD-HEROIMAGE-END
+                #CRUD-FIELD-HEROTEXT-START
+            'herotext' => [
+                'nullable',
+                'max:255',
+                
+            ],
+                #CRUD-FIELD-HEROTEXT-END
                 #CRUD-NEW-FIELD
+
+
+
 
 
 

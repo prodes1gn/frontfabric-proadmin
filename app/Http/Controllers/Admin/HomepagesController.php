@@ -57,6 +57,9 @@ class HomepagesController extends AdminController {
         // #CRUD-FIELD-SEOIMAGE-START
         $this->updateImage($homepage, $request, 'seoimage', 'seoimage-' . $request->lang);
         // #CRUD-FIELD-SEOIMAGE-END
+        // #CRUD-FIELD-HEROIMAGE-START
+        $this->updateImage($homepage, $request, 'heroimage', 'heroimage-' . $request->lang);
+        // #CRUD-FIELD-HEROIMAGE-END
         // #ADD-UPDATE-METHOD-MEDIA
         // #REDIRECT
         return back()->with('message', trans('global.update_success'));
@@ -76,6 +79,7 @@ class HomepagesController extends AdminController {
         $homepage->deleteTranslations($request->lang);
         // #ADD-DELETE-METHOD-GALLERY
         $homepage->clearMediaCollection('seoimage-' . $request->lang);
+        $homepage->clearMediaCollection('heroimage-' . $request->lang);
         // #ADD-DELETE-METHOD-MEDIA
         
         // #REDIRECT

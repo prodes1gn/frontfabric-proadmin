@@ -89,6 +89,28 @@
                     </td>
                 </tr>
                 <!--CRUD-FIELD-SEOTYPE END-->
+                <!--CRUD-FIELD-SERVICEDROPDOWN START-->
+                <tr>
+                    <th style="width:20%;" class="text-right">
+                        {{ trans('cruds.servicedropdown') }}
+                    </th>
+                    <td>
+                        @foreach($portfolioitem->servicedropdown as $row)
+                        <span class="label label-primary label-inline font-weight-bold mr-2">{{ $row->name }}</span>
+                        @endforeach
+                    </td>
+                </tr>
+                <!--CRUD-FIELD-SERVICEDROPDOWN END-->
+                <!--CRUD-FIELD-IMAGE START-->
+                <tr>
+                    <th style="width:20%;" class="text-right">
+                        {{ trans('cruds.image') }}
+                    </th>
+                    <td>
+                        <img src="{{ CMS::img($portfolioitem, 'image', true) }}" height="100px;">
+                    </td>
+                </tr>
+                <!--CRUD-FIELD-IMAGE END-->
                 <!--CRUD-NEW-FIELD-->
             </table>
         </div>

@@ -22,7 +22,19 @@ class AboutuspageTranslation extends Model {
                     #CRUD-FIELD-SEOTYPE-START
         'seotype',
             #CRUD-FIELD-SEOTYPE-END
+                    #CRUD-FIELD-TEXT-START
+        'text',
+            #CRUD-FIELD-TEXT-END
+                    #CRUD-FIELD-STORY-START
+        'story',
+            #CRUD-FIELD-STORY-END
+                    #CRUD-FIELD-WHYUS-START
+        'whyus',
+            #CRUD-FIELD-WHYUS-END
             #CRUD-NEW-LANG-FIELD
+
+
+
 
 
 

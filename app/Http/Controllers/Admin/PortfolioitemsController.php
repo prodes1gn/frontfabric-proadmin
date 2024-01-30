@@ -13,6 +13,7 @@ use JanisKelemen\Setting\Facades\Setting;
 use App\Http\Controllers\Traits\Gallery;
 use Illuminate\Support\Str;
 use Dotlogics\Grapesjs\App\Traits\EditorTrait;
+use App\Models\ServiceitemTranslation;
 #NEW-FIELD-USE-MODEL
 
 class PortfolioitemsController extends AdminController {
@@ -61,9 +62,10 @@ class PortfolioitemsController extends AdminController {
         // #DATA
         $lang = $this->getLang($request->lang);
         // #NEW-FIELD-CREATE-METHOD-DATA
+        $servicedropdowns = ServiceitemTranslation::where('locale', $lang)->pluck('name', 'serviceitem_id');
         $seotypes = array('article' => trans('global.article'), 'product' => trans('global.product'), 'page' => trans('global.page'));
         // #VIEW
-        return view('admin.portfolioitems.create', compact('lang', 'seotypes', /* NEW-FIELD-CREATE-METHOD-VIEW */));
+        return view('admin.portfolioitems.create', compact('lang', 'seotypes', 'servicedropdowns', /* NEW-FIELD-CREATE-METHOD-VIEW */));
     }
 
     // #STORE
@@ -74,11 +76,15 @@ class PortfolioitemsController extends AdminController {
         $this->slugMake($request, 'slug');
         $request->merge([/* NEW-FIELD-STORE-METHOD-MERGE */]);
         $portfolioitem = Portfolioitem::create($request->all());
-        // #NEW-FIELD-STORE-METHOD-SYNC
+        // // #NEW-FIELD-STORE-METHOD-SYNC
+        $portfolioitem->servicedropdown()->sync($request->input('servicedropdown', []));
         // #ADD-STORE-METHOD-GALLERY
         // #CRUD-FIELD-SEOIMAGE-START
         $this->storeImage($portfolioitem, $request, 'seoimage', 'seoimage-' . $request->lang);
         // #CRUD-FIELD-SEOIMAGE-END
+        // #CRUD-FIELD-IMAGE-START
+        $this->storeImage($portfolioitem, $request, 'image', 'image-' . $request->lang);
+        // #CRUD-FIELD-IMAGE-END
         // #ADD-STORE-METHOD-MEDIA
         // #REDIRECT
         return redirect()->route('admin.portfolioitems.index')->with('message', trans('global.create_success'));
@@ -93,9 +99,10 @@ class PortfolioitemsController extends AdminController {
         // $DATA
         $lang = $this->getLang($request->lang);
         // #NEW-FIELD-EDIT-METHOD-DATA
+        $servicedropdowns = ServiceitemTranslation::where('locale', $lang)->pluck('name', 'serviceitem_id');
         $seotypes = array('article' => trans('global.article'), 'product' => trans('global.product'), 'page' => trans('global.page'));
         // #VIEW
-        return view('admin.portfolioitems.edit', compact('portfolioitem', 'lang', 'seotypes', /* NEW-FIELD-EDIT-METHOD-VIEW */));
+        return view('admin.portfolioitems.edit', compact('portfolioitem', 'lang', 'seotypes', 'servicedropdowns', /* NEW-FIELD-EDIT-METHOD-VIEW */));
     }
 
     // #UPDATE
@@ -108,11 +115,15 @@ class PortfolioitemsController extends AdminController {
         $non_lang = [/* NEW-FIELD-UPDATE-METHOD-NONLANG */];
         $portfolioitem->update($request->only($non_lang));
         $portfolioitem->update([$request->lang => $request->except($non_lang)]);
-        // #NEW-FIELD-UPDATE-METHOD-SYNC
+        // // #NEW-FIELD-UPDATE-METHOD-SYNC
+        $portfolioitem->servicedropdown()->sync($request->input('servicedropdown', []));
         // #ADD-UPDATE-METHOD-GALLERY
         // #CRUD-FIELD-SEOIMAGE-START
         $this->updateImage($portfolioitem, $request, 'seoimage', 'seoimage-' . $request->lang);
         // #CRUD-FIELD-SEOIMAGE-END
+        // #CRUD-FIELD-IMAGE-START
+        $this->updateImage($portfolioitem, $request, 'image', 'image-' . $request->lang);
+        // #CRUD-FIELD-IMAGE-END
         // #ADD-UPDATE-METHOD-MEDIA
         // #REDIRECT
         if ($request->action == 1) {
@@ -169,6 +180,7 @@ class PortfolioitemsController extends AdminController {
         $portfolioitem->deleteTranslations($request->lang);
         // #ADD-DELETE-METHOD-GALLERY
         $portfolioitem->clearMediaCollection('seoimage-' . $request->lang);
+        $portfolioitem->clearMediaCollection('image-' . $request->lang);
         // #ADD-DELETE-METHOD-MEDIA
 
         // #REDIRECT

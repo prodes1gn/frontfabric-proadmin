@@ -86,9 +86,39 @@
                     </span>
                     @endif
                 </div> 
+                <!--CRUD-FIELD-HEROTEXT-START-->
+                <div class="form-group {{ $errors->has('herotext') ? 'has-error' : '' }}">
+                    <label for="herotext">{{ trans('cruds.herotext') }} <span class="required"></span></label>
+                    <input class="form-control form-control-solid maxlength" maxlength="255" type="text" name="herotext" value="{{ old('herotext', $homepage->translateOrDefault($lang)->herotext) }}" placeholder="{{ trans('global.enter') }} {{ trans('cruds.herotext') }}">
+                    @if($errors->has('herotext'))
+                    <span class="help-block" role="alert">
+                        @foreach($errors->get('herotext') as $message)
+                        {{ $message }}<br />
+                        @endforeach
+                    </span>
+                    @endif
+                </div>
+                <!--CRUD-FIELD-HEROTEXT-END-->
                 <!--CRUD-NEW-LANG-FIELD-->
             </div>
             <div class="col-lg-4" style="{{ ($lang != config('translatable.locale')) ? "visibility:hidden" : ""  }}">
+                <!--CRUD-FIELD-HEROIMAGE-START-->
+<div class="form-group {{ $errors->has('heroimage') ? 'has-error' : '' }}">
+                    <label for="heroimage">{{ trans('cruds.heroimage') }} <span class="required"></span></label>
+                    <div class="dropzone dropzone-default dropzone-primary dz-clickable" id="heroimage-dropzone">
+                        <div class="dropzone-msg dz-message needsclick">
+                            <h3 class="dropzone-msg-title">{{ trans('global.drop_files_here_to_upload') }}</h3>
+                        </div>
+                    </div>
+                    @if($errors->has('heroimage'))
+                    <span class="help-block" role="alert">{{ $errors->first('heroimage') }}</span>
+                    @endif
+                    <span class="form-text text-primary">{{ trans('global.media_upload_formats') }}: <code>{{ Setting::get('gallery_upload_formats'); }}</code></span>
+                    <span class="form-text text-primary">{{ trans('global.media_max_resolution') }}: <code>{{ Setting::get('gallery_max_width'); }} x {{ Setting::get('gallery_max_height'); }}</code></span>
+                    <span class="form-text text-primary">{{ trans('global.media_max_files') }}: <code>1</code></span>
+                    <span class="form-text text-primary">{{ trans('global.media_max_filesize') }}: <code>{{ Setting::get('gallery_max_filesize'); }} MB</code></span>
+                </div>
+                <!--CRUD-FIELD-HEROIMAGE-END-->
                 <!--CRUD-NEW-FIELD-->
             </div>
             <!--CRUD-PAGEBUILDER-MODULE-->
@@ -265,6 +295,64 @@
 
 </script>
 <!--CRUD-FIELD-SEOIMAGE-JS-END-->
+<!--CRUD-FIELD-HEROIMAGE-JS-START-->
+<script>
+    var uploadedGalleryMap = {}
+    Dropzone.options.heroimageDropzone = {
+        url: '<?= route('admin.homepage.storeMedia') ?>',
+        maxFilesize: <?= Setting::get('gallery_max_filesize'); ?>, // MB
+        acceptedFiles: '<?= Setting::get('gallery_upload_formats'); ?>',
+        maxFiles: 1,
+        addRemoveLinks: true,
+        headers: {
+            'X-CSRF-TOKEN': "{{ csrf_token() }}"
+        },
+        params: {
+            size: <?= Setting::get('gallery_max_filesize'); ?>,
+            width: <?= Setting::get('gallery_max_width'); ?>,
+            height: <?= Setting::get('gallery_max_height'); ?>
+        },
+        success: function (file, response) {
+            $('form').find('input[name="heroimage"]').remove()
+            $('form').append('<input type="hidden" name="heroimage" value="' + response.name + '">')
+        },
+        removedfile: function (file) {
+            file.previewElement.remove()
+            if (file.status !== 'error') {
+                $('form').find('input[name="heroimage"]').remove()
+                this.options.maxFiles = this.options.maxFiles + 1
+            }
+        },
+        init: function () {
+<?php if (isset($homepage) && $homepage->heroimage) : ?>
+                var file = <?= json_encode($homepage->heroimage) ?>;
+                this.options.addedfile.call(this, file)
+                this.options.thumbnail.call(this, file, file.preview ?? file.preview_url)
+                file.previewElement.classList.add('dz-complete')
+                $('form').append('<input type="hidden" name="heroimage" value="' + file.file_name + '">')
+                this.options.maxFiles = this.options.maxFiles - 1
+<?php endif; ?>
+        },
+        error: function (file, response) {
+            if ($.type(response) === 'string') {
+                var message = response //dropzone sends it's own error messages in string
+            } else {
+                var message = response.errors.file
+            }
+            file.previewElement.classList.add('dz-error')
+            _ref = file.previewElement.querySelectorAll('[data-dz-errormessage]')
+            _results = []
+            for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+                node = _ref[_i]
+                _results.push(node.textContent = message)
+            }
+
+            return _results
+        }
+    }
+
+</script>
+<!--CRUD-FIELD-HEROIMAGE-JS-END-->
 <!--CRUD-NEW-FIELD-JS-->
 @parent
 @endsection

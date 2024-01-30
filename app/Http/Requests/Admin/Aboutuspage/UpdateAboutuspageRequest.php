@@ -49,7 +49,38 @@ class UpdateAboutuspageRequest extends FormRequest {
                 
             ],
                 #CRUD-FIELD-SEOTYPE-END
+                #CRUD-FIELD-TEXT-START
+            'text' => [
+                'nullable',
+                'max:100000',
+                'required',
+            ],
+                #CRUD-FIELD-TEXT-END
+                #CRUD-FIELD-GALLERY-START
+            'gallery' => [
+                'array',
+            ],
+                #CRUD-FIELD-GALLERY-END
+                #CRUD-FIELD-STORY-START
+            'story' => [
+                'nullable',
+                'max:100000',
+                'required',
+            ],
+                #CRUD-FIELD-STORY-END
+                #CRUD-FIELD-WHYUS-START
+            'whyus' => [
+                'nullable',
+                'max:100000',
+                'required',
+            ],
+                #CRUD-FIELD-WHYUS-END
                 #CRUD-NEW-FIELD
+
+
+
+
+
 
 
 

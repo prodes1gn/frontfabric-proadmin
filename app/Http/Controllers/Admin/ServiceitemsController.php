@@ -13,6 +13,7 @@ use JanisKelemen\Setting\Facades\Setting;
 use App\Http\Controllers\Traits\Gallery;
 use Illuminate\Support\Str;
 use Dotlogics\Grapesjs\App\Traits\EditorTrait;
+use App\Models\ServicepointitemTranslation;
 #NEW-FIELD-USE-MODEL
 
 class ServiceitemsController extends AdminController {
@@ -61,9 +62,10 @@ class ServiceitemsController extends AdminController {
         // #DATA
         $lang = $this->getLang($request->lang);
         // #NEW-FIELD-CREATE-METHOD-DATA
+        $servicepointdropdowns = ServicepointitemTranslation::where('locale', $lang)->pluck('name', 'servicepointitem_id');
         $seotypes = array('article' => trans('global.article'), 'product' => trans('global.product'), 'page' => trans('global.page'));
         // #VIEW
-        return view('admin.serviceitems.create', compact('lang', 'seotypes', /* NEW-FIELD-CREATE-METHOD-VIEW */));
+        return view('admin.serviceitems.create', compact('lang', 'seotypes', 'servicepointdropdowns', /* NEW-FIELD-CREATE-METHOD-VIEW */));
     }
 
     // #STORE
@@ -74,11 +76,15 @@ class ServiceitemsController extends AdminController {
         $this->slugMake($request, 'slug');
         $request->merge([/* NEW-FIELD-STORE-METHOD-MERGE */]);
         $serviceitem = Serviceitem::create($request->all());
-        // #NEW-FIELD-STORE-METHOD-SYNC
+        // // #NEW-FIELD-STORE-METHOD-SYNC
+        $serviceitem->servicepointdropdown()->sync($request->input('servicepointdropdown', []));
         // #ADD-STORE-METHOD-GALLERY
         // #CRUD-FIELD-SEOIMAGE-START
         $this->storeImage($serviceitem, $request, 'seoimage', 'seoimage-' . $request->lang);
         // #CRUD-FIELD-SEOIMAGE-END
+        // #CRUD-FIELD-IMAGE-START
+        $this->storeImage($serviceitem, $request, 'image', 'image-' . $request->lang);
+        // #CRUD-FIELD-IMAGE-END
         // #ADD-STORE-METHOD-MEDIA
         // #REDIRECT
         return redirect()->route('admin.serviceitems.index')->with('message', trans('global.create_success'));
@@ -93,9 +99,10 @@ class ServiceitemsController extends AdminController {
         // $DATA
         $lang = $this->getLang($request->lang);
         // #NEW-FIELD-EDIT-METHOD-DATA
+        $servicepointdropdowns = ServicepointitemTranslation::where('locale', $lang)->pluck('name', 'servicepointitem_id');
         $seotypes = array('article' => trans('global.article'), 'product' => trans('global.product'), 'page' => trans('global.page'));
         // #VIEW
-        return view('admin.serviceitems.edit', compact('serviceitem', 'lang', 'seotypes', /* NEW-FIELD-EDIT-METHOD-VIEW */));
+        return view('admin.serviceitems.edit', compact('serviceitem', 'lang', 'seotypes', 'servicepointdropdowns', /* NEW-FIELD-EDIT-METHOD-VIEW */));
     }
 
     // #UPDATE
@@ -108,11 +115,15 @@ class ServiceitemsController extends AdminController {
         $non_lang = [/* NEW-FIELD-UPDATE-METHOD-NONLANG */];
         $serviceitem->update($request->only($non_lang));
         $serviceitem->update([$request->lang => $request->except($non_lang)]);
-        // #NEW-FIELD-UPDATE-METHOD-SYNC
+        // // #NEW-FIELD-UPDATE-METHOD-SYNC
+        $serviceitem->servicepointdropdown()->sync($request->input('servicepointdropdown', []));
         // #ADD-UPDATE-METHOD-GALLERY
         // #CRUD-FIELD-SEOIMAGE-START
         $this->updateImage($serviceitem, $request, 'seoimage', 'seoimage-' . $request->lang);
         // #CRUD-FIELD-SEOIMAGE-END
+        // #CRUD-FIELD-IMAGE-START
+        $this->updateImage($serviceitem, $request, 'image', 'image-' . $request->lang);
+        // #CRUD-FIELD-IMAGE-END
         // #ADD-UPDATE-METHOD-MEDIA
         // #REDIRECT
         if ($request->action == 1) {
@@ -169,6 +180,7 @@ class ServiceitemsController extends AdminController {
         $serviceitem->deleteTranslations($request->lang);
         // #ADD-DELETE-METHOD-GALLERY
         $serviceitem->clearMediaCollection('seoimage-' . $request->lang);
+        $serviceitem->clearMediaCollection('image-' . $request->lang);
         // #ADD-DELETE-METHOD-MEDIA
 
         // #REDIRECT

@@ -51,7 +51,19 @@ class Aboutuspage extends Model implements TranslatableContract, HasMedia, Edita
                     #CRUD-FIELD-SEOTYPE-START
         'seotype',
             #CRUD-FIELD-SEOTYPE-END
+                    #CRUD-FIELD-TEXT-START
+        'text',
+            #CRUD-FIELD-TEXT-END
+                    #CRUD-FIELD-STORY-START
+        'story',
+            #CRUD-FIELD-STORY-END
+                    #CRUD-FIELD-WHYUS-START
+        'whyus',
+            #CRUD-FIELD-WHYUS-END
             #CRUD-NEW-LANG-FIELD
+
+
+
 
 
 
@@ -78,6 +90,24 @@ class Aboutuspage extends Model implements TranslatableContract, HasMedia, Edita
         }
 
         return $file;
+    }
+    
+    // #CRUD-FIELD-GALLERY
+    public function getGalleryAttribute() {
+        if (!request()->lang) {
+            request()->lang = config('translatable.locale');
+        }
+        $files = $this->getMedia('gallery-' . request()->lang);
+        $files->each(function ($item) {
+            if (!File::exists($item->getPath())) {
+                $item->delete();
+            } else {
+            $item->url = $item->getUrl();
+            $item->thumbnail = $item->getUrl('thumb');
+            $item->preview = $item->getUrl('preview');
+            }
+        });
+        return $files;
     }
     
     #CRUD-NEW-RELATION

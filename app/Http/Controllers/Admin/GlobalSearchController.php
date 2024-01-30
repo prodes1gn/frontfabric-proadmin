@@ -10,6 +10,15 @@ class GlobalSearchController extends Controller {
 
     private $models = [
         #CRUD-NEW-ITEM
+        #CRUD-ITEM-SERVICEPOINTITEM-START
+        'ServicepointitemTranslation' => [
+            'servicepointitems',
+            'cruds.servicepointitems',
+            'servicepointitem_edit',
+            'servicepointitem_id',
+            'module',
+        ],
+        #CRUD-ITEM-SERVICEPOINTITEM-END
         #CRUD-ITEM-SYSTEMPAGESITEM-START
         'SystempagesitemTranslation' => [
             'systempagesitems',

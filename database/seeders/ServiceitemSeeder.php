@@ -29,6 +29,8 @@ class ServiceitemSeeder extends Seeder {
                     'seotitle' => fake()->text(255),
                     'seodescription' => fake()->text(255),
                     'seotype' => fake()->randomElement(array('article', 'product', 'page')),
+                    'hometext' => fake()->text(255),
+                    'text' => fake()->text(50000),
                     #CRUD-NEW-LANG-FIELD
                 ];
             }
@@ -39,6 +41,10 @@ class ServiceitemSeeder extends Seeder {
                 $imageUrl = $faker->imageUrl(640, 480);
                 $serviceitem->addMediaFromUrl($imageUrl)->toMediaCollection('seoimage-' . $locale);
             }
+                    $serviceitem = Serviceitem::latest()->first();
+            $faker = Faker::create();
+            $imageUrl = $faker->imageUrl(640, 480);
+            $serviceitem->addMediaFromUrl($imageUrl)->toMediaCollection('image-' . config('translatable.locale'));
                     #CRUD-NEW-SEEDER-FIELD
         }
     }

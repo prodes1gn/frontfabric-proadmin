@@ -49,7 +49,15 @@ class UpdateApproachpageRequest extends FormRequest {
                 
             ],
                 #CRUD-FIELD-SEOTYPE-END
+                #CRUD-FIELD-TEXT-START
+            'text' => [
+                'nullable',
+                'max:100000',
+                'required',
+            ],
+                #CRUD-FIELD-TEXT-END
                 #CRUD-NEW-FIELD
+
 
 
 

@@ -51,7 +51,11 @@ class Homepage extends Model implements TranslatableContract, HasMedia, Editable
                     #CRUD-FIELD-SEOTYPE-START
         'seotype',
             #CRUD-FIELD-SEOTYPE-END
+                    #CRUD-FIELD-HEROTEXT-START
+        'herotext',
+            #CRUD-FIELD-HEROTEXT-END
             #CRUD-NEW-LANG-FIELD
+
 
 
 
@@ -69,6 +73,23 @@ class Homepage extends Model implements TranslatableContract, HasMedia, Editable
             request()->lang = config('translatable.locale');
         }
         $file = $this->getMedia('seoimage-' . request()->lang)->last();
+        if ($file) {
+            if (!File::exists($file->getPath())) {
+                $file = null;
+            }
+        } else {
+            $file = null;
+        }
+
+        return $file;
+    }
+    
+    // #CRUD-FIELD-HEROIMAGE
+    public function getHeroimageAttribute() {
+        if (!request()->lang) {
+            request()->lang = config('translatable.locale');
+        }
+        $file = $this->getMedia('heroimage-' . request()->lang)->last();
         if ($file) {
             if (!File::exists($file->getPath())) {
                 $file = null;

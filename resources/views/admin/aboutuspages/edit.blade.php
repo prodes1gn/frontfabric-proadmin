@@ -86,9 +86,65 @@
                     </span>
                     @endif
                 </div> 
+                <!--CRUD-FIELD-TEXT-START-->
+                <div class="form-group {{ $errors->has('text') ? 'has-error' : '' }}">
+                    <label for="text">{{ trans('cruds.text') }} <span class="required">*</span></label>
+                    <textarea class="form-control form-control-solid tynimce" maxlength="100000" name="text" rows="3" placeholder="{{ trans('global.enter') }} {{ trans('cruds.text') }}">{{ old('text', $aboutuspage->translateOrDefault($lang)->text) }}</textarea>
+                    @if($errors->has('text'))
+                    <span class="help-block" role="alert">
+                        @foreach($errors->get('text') as $message)
+                        {{ $message }}<br />
+                        @endforeach
+                    </span>
+                    @endif
+                </div>
+                <!--CRUD-FIELD-TEXT-END-->
+                <!--CRUD-FIELD-STORY-START-->
+                <div class="form-group {{ $errors->has('story') ? 'has-error' : '' }}">
+                    <label for="story">{{ trans('cruds.story') }} <span class="required">*</span></label>
+                    <textarea class="form-control form-control-solid tynimce" maxlength="100000" name="story" rows="3" placeholder="{{ trans('global.enter') }} {{ trans('cruds.story') }}">{{ old('story', $aboutuspage->translateOrDefault($lang)->story) }}</textarea>
+                    @if($errors->has('story'))
+                    <span class="help-block" role="alert">
+                        @foreach($errors->get('story') as $message)
+                        {{ $message }}<br />
+                        @endforeach
+                    </span>
+                    @endif
+                </div>
+                <!--CRUD-FIELD-STORY-END-->
+                <!--CRUD-FIELD-WHYUS-START-->
+                <div class="form-group {{ $errors->has('whyus') ? 'has-error' : '' }}">
+                    <label for="whyus">{{ trans('cruds.whyus') }} <span class="required">*</span></label>
+                    <textarea class="form-control form-control-solid tynimce" maxlength="100000" name="whyus" rows="3" placeholder="{{ trans('global.enter') }} {{ trans('cruds.whyus') }}">{{ old('whyus', $aboutuspage->translateOrDefault($lang)->whyus) }}</textarea>
+                    @if($errors->has('whyus'))
+                    <span class="help-block" role="alert">
+                        @foreach($errors->get('whyus') as $message)
+                        {{ $message }}<br />
+                        @endforeach
+                    </span>
+                    @endif
+                </div>
+                <!--CRUD-FIELD-WHYUS-END-->
                 <!--CRUD-NEW-LANG-FIELD-->
             </div>
             <div class="col-lg-4" style="{{ ($lang != config('translatable.locale')) ? "visibility:hidden" : ""  }}">
+                <!--CRUD-FIELD-GALLERY-START-->
+<div class="form-group {{ $errors->has('gallery') ? 'has-error' : '' }}">
+                    <label for="gallery">{{ trans('global.gallery') }} <span class="required"></span></label>
+                    <div class="dropzone dropzone-default dropzone-primary dz-clickable" id="gallery-dropzone">
+                        <div class="dropzone-msg dz-message needsclick">
+                            <h3 class="dropzone-msg-title">{{ trans('global.drop_files_here_to_upload') }}</h3>
+                        </div>
+                    </div>
+                    @if($errors->has('gallery'))
+                    <span class="help-block" role="alert">{{ $errors->first('gallery') }}</span>
+                    @endif
+                    <span class="form-text text-primary">{{ trans('global.media_upload_formats') }}: <code>{{ Setting::get('gallery_upload_formats'); }}</code></span>
+                    <span class="form-text text-primary">{{ trans('global.media_max_resolution') }}: <code>{{ Setting::get('gallery_max_width'); }} x {{ Setting::get('gallery_max_height'); }}</code></span>
+                    <span class="form-text text-primary">{{ trans('global.media_max_files') }}: <code>{{ config('cms.media_max_files') }}</code></span>
+                    <span class="form-text text-primary">{{ trans('global.media_max_filesize') }}: <code>{{ Setting::get('gallery_max_filesize'); }} MB</code></span>
+                </div>
+                <!--CRUD-FIELD-GALLERY-END-->
                 <!--CRUD-NEW-FIELD-->
             </div>
             <!--CRUD-PAGEBUILDER-MODULE-->
@@ -265,6 +321,70 @@
 
 </script>
 <!--CRUD-FIELD-SEOIMAGE-JS-END-->
+<!--CRUD-FIELD-GALLERY-JS-START-->
+<script>
+    var uploadedGalleryMap = {}
+    Dropzone.options.galleryDropzone = {
+        url: '<?= route('admin.aboutuspage.storeMedia') ?>',
+        maxFilesize: <?= Setting::get('gallery_max_filesize'); ?>, // MB
+        acceptedFiles: '<?= Setting::get('gallery_upload_formats'); ?>',
+        maxFiles: <?= config('cms.media_max_files'); ?>,
+        addRemoveLinks: true,
+        headers: {
+            'X-CSRF-TOKEN': "{{ csrf_token() }}"
+        },
+        params: {
+            size: <?= Setting::get('gallery_max_filesize'); ?>,
+            width: <?= Setting::get('gallery_max_width'); ?>,
+            height: <?= Setting::get('gallery_max_height'); ?>
+        },
+        success: function (file, response) {
+            $('form').append('<input type="hidden" name="gallery[]" value="' + response.name + '">')
+            uploadedGalleryMap[file.name] = response.name
+        },
+        removedfile: function (file) {
+            console.log(file)
+            file.previewElement.remove()
+            var name = ''
+            if (typeof file.file_name !== 'undefined') {
+                name = file.file_name
+            } else {
+                name = uploadedGalleryMap[file.name]
+            }
+            $('form').find('input[name="gallery[]"][value="' + name + '"]').remove()
+        },
+        init: function () {
+<?php if (isset($aboutuspage) && $aboutuspage->gallery) : ?>
+                var files = <?= json_encode($aboutuspage->gallery) ?>;
+                for (var i in files) {
+                    var file = files[i]
+                    this.options.addedfile.call(this, file)
+                    this.options.thumbnail.call(this, file, file.preview ?? file.preview_url)
+                    file.previewElement.classList.add('dz-complete')
+                    $('form').append('<input type="hidden" name="gallery[]" value="' + file.file_name + '">')
+                }
+<?php endif; ?>
+        },
+        error: function (file, response) {
+            if ($.type(response) === 'string') {
+                var message = response //dropzone sends it's own error messages in string
+            } else {
+                var message = response.errors.file
+            }
+            file.previewElement.classList.add('dz-error')
+            _ref = file.previewElement.querySelectorAll('[data-dz-errormessage]')
+            _results = []
+            for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+                node = _ref[_i]
+                _results.push(node.textContent = message)
+            }
+
+            return _results
+        }
+    }
+
+</script>
+<!--CRUD-FIELD-GALLERY-JS-END-->
 <!--CRUD-NEW-FIELD-JS-->
 @parent
 @endsection

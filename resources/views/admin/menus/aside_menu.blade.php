@@ -171,6 +171,16 @@
             </li>
             @endcan
             <!--CRUD-ITEM-SYSTEMPAGESITEMS END-->
+            <!--CRUD-ITEM-SERVICEPOINTITEMS START-->
+            @can('servicepointitem_access')
+            <li class="{{ request()->is(config('cms.admin_panel_url')."/module/servicepointitems") || request()->is(config('cms.admin_panel_url')."/module/servicepointitems/*") ? "menu-item-active" : "" }} menu-item" aria-haspopup="true">
+                <a href="{{ route("admin.servicepointitems.index") }}" title="{{ trans('cruds.servicepointitems') }}" class="menu-link">
+                    <i class="menu-icon la la-file"></i>
+                    <span class="menu-text">{{ trans('cruds.servicepointitems') }}</span>
+                </a>
+            </li>
+            @endcan
+            <!--CRUD-ITEM-SERVICEPOINTITEMS END-->
             <!--CRUD-NEW-ITEM-->
             @endif
             <li class="menu-section">

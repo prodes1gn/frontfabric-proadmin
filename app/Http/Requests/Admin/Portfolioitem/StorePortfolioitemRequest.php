@@ -51,7 +51,19 @@ class StorePortfolioitemRequest extends FormRequest {
                 
             ],
                 #CRUD-FIELD-SEOTYPE-END
+                #CRUD-FIELD-SERVICEDROPDOWN-START
+            'servicedropdown' => [
+                
+            ],
+                #CRUD-FIELD-SERVICEDROPDOWN-END
+                #CRUD-FIELD-IMAGE-START
+            'image' => [
+            ],
+                #CRUD-FIELD-IMAGE-END
                 #CRUD-NEW-FIELD
+
+
+
 
 
 

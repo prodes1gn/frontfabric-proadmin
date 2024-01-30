@@ -51,7 +51,35 @@ class StoreServiceitemRequest extends FormRequest {
                 
             ],
                 #CRUD-FIELD-SEOTYPE-END
+                #CRUD-FIELD-HOMETEXT-START
+            'hometext' => [
+                'nullable',
+                'max:255',
+                'required',
+            ],
+                #CRUD-FIELD-HOMETEXT-END
+                #CRUD-FIELD-TEXT-START
+            'text' => [
+                'nullable',
+                'max:100000',
+                'required',
+            ],
+                #CRUD-FIELD-TEXT-END
+                #CRUD-FIELD-SERVICEPOINTDROPDOWN-START
+            'servicepointdropdown' => [
+                'required',
+            ],
+                #CRUD-FIELD-SERVICEPOINTDROPDOWN-END
+                #CRUD-FIELD-IMAGE-START
+            'image' => [
+            ],
+                #CRUD-FIELD-IMAGE-END
                 #CRUD-NEW-FIELD
+
+
+
+
+
 
 
 

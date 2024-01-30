@@ -80,5 +80,28 @@ class Portfolioitem extends Model implements TranslatableContract, HasMedia, Edi
         return $file;
     }
     
+    // #CRUD-FIELD-IMAGE
+    public function getImageAttribute() {
+        if (!request()->lang) {
+            request()->lang = config('translatable.locale');
+        }
+        $file = $this->getMedia('image-' . request()->lang)->last();
+        if ($file) {
+            if (!File::exists($file->getPath())) {
+                $file = null;
+            }
+        } else {
+            $file = null;
+        }
+
+        return $file;
+    }
+    
     #CRUD-NEW-RELATION
+    // #CRUD-FIELD-SERVICEDROPDOWN
+    public function servicedropdown()
+    {
+        return $this->belongsToMany(ServiceitemTranslation::class, 'rel_portfolioitem_serviceitem', 'portfolioitem_id', 'serviceitem_id');
+    }
+
 }

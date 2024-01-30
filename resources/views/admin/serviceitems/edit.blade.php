@@ -86,9 +86,69 @@
                     </span>
                     @endif
                 </div> 
+                <!--CRUD-FIELD-HOMETEXT-START-->
+                <div class="form-group {{ $errors->has('hometext') ? 'has-error' : '' }}">
+                    <label for="hometext">{{ trans('cruds.hometext') }} <span class="required">*</span></label>
+                    <input class="form-control form-control-solid maxlength" maxlength="255" type="text" name="hometext" value="{{ old('hometext', $serviceitem->translateOrDefault($lang)->hometext) }}" placeholder="{{ trans('global.enter') }} {{ trans('cruds.hometext') }}">
+                    @if($errors->has('hometext'))
+                    <span class="help-block" role="alert">
+                        @foreach($errors->get('hometext') as $message)
+                        {{ $message }}<br />
+                        @endforeach
+                    </span>
+                    @endif
+                </div>
+                <!--CRUD-FIELD-HOMETEXT-END-->
+                <!--CRUD-FIELD-TEXT-START-->
+                <div class="form-group {{ $errors->has('text') ? 'has-error' : '' }}">
+                    <label for="text">{{ trans('cruds.text') }} <span class="required">*</span></label>
+                    <textarea class="form-control form-control-solid tynimce" maxlength="100000" name="text" rows="3" placeholder="{{ trans('global.enter') }} {{ trans('cruds.text') }}">{{ old('text', $serviceitem->translateOrDefault($lang)->text) }}</textarea>
+                    @if($errors->has('text'))
+                    <span class="help-block" role="alert">
+                        @foreach($errors->get('text') as $message)
+                        {{ $message }}<br />
+                        @endforeach
+                    </span>
+                    @endif
+                </div>
+                <!--CRUD-FIELD-TEXT-END-->
                 <!--CRUD-NEW-LANG-FIELD-->
             </div>
             <div class="col-lg-4" style="{{ ($lang != config('translatable.locale')) ? "visibility:hidden" : ""  }}">
+                <!--CRUD-FIELD-SERVICEPOINTDROPDOWN-START-->
+                <div class="form-group {{ $errors->has('servicepointdropdown') ? 'has-error' : '' }}">
+                    <label for="servicepointdropdown">{{ trans('cruds.servicepointdropdown') }} <span class="required">*</span></label>
+                    <select class="form-control select2 select2_multiselect" name="servicepointdropdown[]" multiple>
+                        @foreach($servicepointdropdowns as $k => $v)
+                        <option value="{{ $k }}" {{ (in_array($k, old('servicepointdropdown', [])) || $serviceitem->servicepointdropdown->contains($k)) ? 'selected' : '' }}>{{ $v }}</option>
+                        @endforeach
+                    </select>
+                    @if($errors->has('servicepointdropdown'))
+                    <span class="help-block" role="alert">
+                        @foreach($errors->get('servicepointdropdown') as $message)
+                        {{ $message }}<br />
+                        @endforeach
+                    </span>
+                    @endif
+                </div>
+                <!--CRUD-FIELD-SERVICEPOINTDROPDOWN-END-->
+                <!--CRUD-FIELD-IMAGE-START-->
+<div class="form-group {{ $errors->has('image') ? 'has-error' : '' }}">
+                    <label for="image">{{ trans('cruds.image') }} <span class="required"></span></label>
+                    <div class="dropzone dropzone-default dropzone-primary dz-clickable" id="image-dropzone">
+                        <div class="dropzone-msg dz-message needsclick">
+                            <h3 class="dropzone-msg-title">{{ trans('global.drop_files_here_to_upload') }}</h3>
+                        </div>
+                    </div>
+                    @if($errors->has('image'))
+                    <span class="help-block" role="alert">{{ $errors->first('image') }}</span>
+                    @endif
+                    <span class="form-text text-primary">{{ trans('global.media_upload_formats') }}: <code>{{ Setting::get('gallery_upload_formats'); }}</code></span>
+                    <span class="form-text text-primary">{{ trans('global.media_max_resolution') }}: <code>{{ Setting::get('gallery_max_width'); }} x {{ Setting::get('gallery_max_height'); }}</code></span>
+                    <span class="form-text text-primary">{{ trans('global.media_max_files') }}: <code>1</code></span>
+                    <span class="form-text text-primary">{{ trans('global.media_max_filesize') }}: <code>{{ Setting::get('gallery_max_filesize'); }} MB</code></span>
+                </div>
+                <!--CRUD-FIELD-IMAGE-END-->
                 <!--CRUD-NEW-FIELD-->
             </div>
             <!--CRUD-PAGEBUILDER-MODULE-->
@@ -273,6 +333,64 @@
 
 </script>
 <!--CRUD-FIELD-SEOIMAGE-JS-END-->
+<!--CRUD-FIELD-IMAGE-JS-START-->
+<script>
+    var uploadedGalleryMap = {}
+    Dropzone.options.imageDropzone = {
+        url: '<?= route('admin.serviceitem.storeMedia') ?>',
+        maxFilesize: <?= Setting::get('gallery_max_filesize'); ?>, // MB
+        acceptedFiles: '<?= Setting::get('gallery_upload_formats'); ?>',
+        maxFiles: 1,
+        addRemoveLinks: true,
+        headers: {
+            'X-CSRF-TOKEN': "{{ csrf_token() }}"
+        },
+        params: {
+            size: <?= Setting::get('gallery_max_filesize'); ?>,
+            width: <?= Setting::get('gallery_max_width'); ?>,
+            height: <?= Setting::get('gallery_max_height'); ?>
+        },
+        success: function (file, response) {
+            $('form').find('input[name="image"]').remove()
+            $('form').append('<input type="hidden" name="image" value="' + response.name + '">')
+        },
+        removedfile: function (file) {
+            file.previewElement.remove()
+            if (file.status !== 'error') {
+                $('form').find('input[name="image"]').remove()
+                this.options.maxFiles = this.options.maxFiles + 1
+            }
+        },
+        init: function () {
+<?php if (isset($serviceitem) && $serviceitem->image) : ?>
+                var file = <?= json_encode($serviceitem->image) ?>;
+                this.options.addedfile.call(this, file)
+                this.options.thumbnail.call(this, file, file.preview ?? file.preview_url)
+                file.previewElement.classList.add('dz-complete')
+                $('form').append('<input type="hidden" name="image" value="' + file.file_name + '">')
+                this.options.maxFiles = this.options.maxFiles - 1
+<?php endif; ?>
+        },
+        error: function (file, response) {
+            if ($.type(response) === 'string') {
+                var message = response //dropzone sends it's own error messages in string
+            } else {
+                var message = response.errors.file
+            }
+            file.previewElement.classList.add('dz-error')
+            _ref = file.previewElement.querySelectorAll('[data-dz-errormessage]')
+            _results = []
+            for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+                node = _ref[_i]
+                _results.push(node.textContent = message)
+            }
+
+            return _results
+        }
+    }
+
+</script>
+<!--CRUD-FIELD-IMAGE-JS-END-->
 <!--CRUD-NEW-FIELD-JS-->
 @parent
 @endsection

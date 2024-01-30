@@ -346,6 +346,33 @@
             <!--CRUD-ITEM-SYSTEMPAGESITEM-END-->
             @endcan
 
+            <!--CRUD-ITEM-SERVICEPOINTITEM-START-->
+            @can('servicepointitem_create')
+            <div class="col-xl-6 fast-buttons">
+                <div class="card card-custom mb-5 bgi-no-repeat" style="background-position: left top; background-size: 100% auto; background-image: url({{ 'assets/media/svg/shapes/abstract-2.svg'}})">	
+                    <div class="card-body py-2 px-5">
+                        <div class="d-flex align-items-center justify-content-between p-4 flex-lg-wrap flex-xl-nowrap">
+                            <div class="d-flex flex-column mr-5">
+                                <p class="h4 text-primary mb-2">
+                                    {{ trans('global.create') }} {{ trans('cruds.servicepointitem') }}
+                                </p>
+                                <p class="text-dark-50" mb-0">
+                                    {{ trans('global.fast_add_text') }} {{ trans('cruds.servicepointitems') }}
+                                </p>
+                            </div>
+                            <div class="ml-6 ml-lg-0 ml-xxl-6 flex-shrink-0">
+                                <a href="{{ route('admin.servicepointitems.create') }}" class="btn btn-primary font-weight-bold">
+                                    <i class="fas fa-plus-circle"></i>
+                                    {{ trans('global.add') }}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--CRUD-ITEM-SERVICEPOINTITEM-END-->
+            @endcan
+
             <!--CRUD-NEW-ITEM-->
         </div>
 

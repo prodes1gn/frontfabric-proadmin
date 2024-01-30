@@ -51,7 +51,15 @@ class Serviceitem extends Model implements TranslatableContract, HasMedia, Edita
                     #CRUD-FIELD-SEOTYPE-START
         'seotype',
             #CRUD-FIELD-SEOTYPE-END
+                    #CRUD-FIELD-HOMETEXT-START
+        'hometext',
+            #CRUD-FIELD-HOMETEXT-END
+                    #CRUD-FIELD-TEXT-START
+        'text',
+            #CRUD-FIELD-TEXT-END
             #CRUD-NEW-LANG-FIELD
+
+
 
 
 
@@ -80,5 +88,28 @@ class Serviceitem extends Model implements TranslatableContract, HasMedia, Edita
         return $file;
     }
     
+    // #CRUD-FIELD-IMAGE
+    public function getImageAttribute() {
+        if (!request()->lang) {
+            request()->lang = config('translatable.locale');
+        }
+        $file = $this->getMedia('image-' . request()->lang)->last();
+        if ($file) {
+            if (!File::exists($file->getPath())) {
+                $file = null;
+            }
+        } else {
+            $file = null;
+        }
+
+        return $file;
+    }
+    
     #CRUD-NEW-RELATION
+    // #CRUD-FIELD-SERVICEPOINTDROPDOWN
+    public function servicepointdropdown()
+    {
+        return $this->belongsToMany(ServicepointitemTranslation::class, 'rel_serviceitem_servicepointitem', 'serviceitem_id', 'servicepointitem_id');
+    }
+
 }
