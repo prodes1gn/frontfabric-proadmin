@@ -29,6 +29,7 @@ class SystempagesitemSeeder extends Seeder {
                     'seotitle' => fake()->text(255),
                     'seodescription' => fake()->text(255),
                     'seotype' => fake()->randomElement(array('article', 'product', 'page')),
+                    'text' => fake()->text(50000),
                     #CRUD-NEW-LANG-FIELD
                 ];
             }

@@ -25,7 +25,8 @@ class RequestsitemSeeder extends Seeder {
             foreach (config('translatable.locales') as $locale) {
                 $array[$locale] = [
                     'name' => fake()->text(mt_rand(5, 150)),
-                        #CRUD-NEW-LANG-FIELD
+                        'text' => fake()->text(50000),
+                    #CRUD-NEW-LANG-FIELD
                 ];
             }
             Requestsitem::create($array);

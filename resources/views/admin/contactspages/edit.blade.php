@@ -99,6 +99,45 @@
                     @endif
                 </div>
                 <!--CRUD-FIELD-TEXT-END-->
+                <!--CRUD-FIELD-EMAIL-START-->
+                <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
+                    <label for="email">{{ trans('cruds.email') }} <span class="required">*</span></label>
+                    <input class="form-control form-control-solid maxlength" maxlength="255" type="text" name="email" value="{{ old('email', $contactspage->translateOrDefault($lang)->email) }}" placeholder="{{ trans('global.enter') }} {{ trans('cruds.email') }}">
+                    @if($errors->has('email'))
+                    <span class="help-block" role="alert">
+                        @foreach($errors->get('email') as $message)
+                        {{ $message }}<br />
+                        @endforeach
+                    </span>
+                    @endif
+                </div>
+                <!--CRUD-FIELD-EMAIL-END-->
+                <!--CRUD-FIELD-PHONE-START-->
+                <div class="form-group {{ $errors->has('phone') ? 'has-error' : '' }}">
+                    <label for="phone">{{ trans('cruds.phone') }} <span class="required">*</span></label>
+                    <input class="form-control form-control-solid maxlength" maxlength="255" type="text" name="phone" value="{{ old('phone', $contactspage->translateOrDefault($lang)->phone) }}" placeholder="{{ trans('global.enter') }} {{ trans('cruds.phone') }}">
+                    @if($errors->has('phone'))
+                    <span class="help-block" role="alert">
+                        @foreach($errors->get('phone') as $message)
+                        {{ $message }}<br />
+                        @endforeach
+                    </span>
+                    @endif
+                </div>
+                <!--CRUD-FIELD-PHONE-END-->
+                <!--CRUD-FIELD-CALENDY-START-->
+                <div class="form-group {{ $errors->has('calendy') ? 'has-error' : '' }}">
+                    <label for="calendy">{{ trans('cruds.calendy') }} <span class="required">*</span></label>
+                    <input class="form-control form-control-solid maxlength" maxlength="255" type="text" name="calendy" value="{{ old('calendy', $contactspage->translateOrDefault($lang)->calendy) }}" placeholder="{{ trans('global.enter') }} {{ trans('cruds.calendy') }}">
+                    @if($errors->has('calendy'))
+                    <span class="help-block" role="alert">
+                        @foreach($errors->get('calendy') as $message)
+                        {{ $message }}<br />
+                        @endforeach
+                    </span>
+                    @endif
+                </div>
+                <!--CRUD-FIELD-CALENDY-END-->
                 <!--CRUD-NEW-LANG-FIELD-->
             </div>
             <div class="col-lg-4" style="{{ ($lang != config('translatable.locale')) ? "visibility:hidden" : ""  }}">

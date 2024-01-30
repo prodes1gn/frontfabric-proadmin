@@ -10,7 +10,11 @@ class RequestsitemTranslation extends Model {
     public $table = 'requestsitems_translations';
     protected $fillable = [
         'name',
+                    #CRUD-FIELD-TEXT-START
+        'text',
+            #CRUD-FIELD-TEXT-END
             #CRUD-NEW-LANG-FIELD
+
     ];
     public static $searchable = [
         'name',

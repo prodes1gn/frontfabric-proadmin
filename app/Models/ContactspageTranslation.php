@@ -25,7 +25,19 @@ class ContactspageTranslation extends Model {
                     #CRUD-FIELD-TEXT-START
         'text',
             #CRUD-FIELD-TEXT-END
+                    #CRUD-FIELD-EMAIL-START
+        'email',
+            #CRUD-FIELD-EMAIL-END
+                    #CRUD-FIELD-PHONE-START
+        'phone',
+            #CRUD-FIELD-PHONE-END
+                    #CRUD-FIELD-CALENDY-START
+        'calendy',
+            #CRUD-FIELD-CALENDY-END
             #CRUD-NEW-LANG-FIELD
+
+
+
 
 
 

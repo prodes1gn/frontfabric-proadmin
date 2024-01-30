@@ -35,6 +35,16 @@
                         {{ $requestsitem->name }}
                     </td>
                 </tr>
+                <!--CRUD-FIELD-TEXT START-->
+                <tr>
+                    <th style="width:20%;" class="text-right">
+                        {{ trans('cruds.text') }}
+                    </th>
+                    <td>
+                        {!! $requestsitem->text !!}
+                    </td>
+                </tr>
+                <!--CRUD-FIELD-TEXT END-->
                 <!--CRUD-NEW-FIELD-->
             </table>
         </div>

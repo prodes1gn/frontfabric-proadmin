@@ -89,6 +89,16 @@
                     </td>
                 </tr>
                 <!--CRUD-FIELD-SEOTYPE END-->
+                <!--CRUD-FIELD-TEXT START-->
+                <tr>
+                    <th style="width:20%;" class="text-right">
+                        {{ trans('cruds.text') }}
+                    </th>
+                    <td>
+                        {!! $systempagesitem->text !!}
+                    </td>
+                </tr>
+                <!--CRUD-FIELD-TEXT END-->
                 <!--CRUD-NEW-FIELD-->
             </table>
         </div>

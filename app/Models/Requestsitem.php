@@ -39,7 +39,11 @@ class Requestsitem extends Model implements TranslatableContract, HasMedia, Edit
     ];
     public $translatedAttributes = [
         'name',
+                    #CRUD-FIELD-TEXT-START
+        'text',
+            #CRUD-FIELD-TEXT-END
             #CRUD-NEW-LANG-FIELD
+
     ];
 
     public function registerMediaConversions(Media $media = null): void {

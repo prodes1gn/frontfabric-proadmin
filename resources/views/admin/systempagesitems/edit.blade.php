@@ -86,6 +86,19 @@
                     </span>
                     @endif
                 </div> 
+                <!--CRUD-FIELD-TEXT-START-->
+                <div class="form-group {{ $errors->has('text') ? 'has-error' : '' }}">
+                    <label for="text">{{ trans('cruds.text') }} <span class="required">*</span></label>
+                    <textarea class="form-control form-control-solid tynimce" maxlength="100000" name="text" rows="3" placeholder="{{ trans('global.enter') }} {{ trans('cruds.text') }}">{{ old('text', $systempagesitem->translateOrDefault($lang)->text) }}</textarea>
+                    @if($errors->has('text'))
+                    <span class="help-block" role="alert">
+                        @foreach($errors->get('text') as $message)
+                        {{ $message }}<br />
+                        @endforeach
+                    </span>
+                    @endif
+                </div>
+                <!--CRUD-FIELD-TEXT-END-->
                 <!--CRUD-NEW-LANG-FIELD-->
             </div>
             <div class="col-lg-4" style="{{ ($lang != config('translatable.locale')) ? "visibility:hidden" : ""  }}">

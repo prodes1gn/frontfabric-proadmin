@@ -56,7 +56,31 @@ class UpdateContactspageRequest extends FormRequest {
                 'required',
             ],
                 #CRUD-FIELD-TEXT-END
+                #CRUD-FIELD-EMAIL-START
+            'email' => [
+                'nullable',
+                'max:255',
+                'required',
+            ],
+                #CRUD-FIELD-EMAIL-END
+                #CRUD-FIELD-PHONE-START
+            'phone' => [
+                'nullable',
+                'max:255',
+                'required',
+            ],
+                #CRUD-FIELD-PHONE-END
+                #CRUD-FIELD-CALENDY-START
+            'calendy' => [
+                'nullable',
+                'max:255',
+                'required',
+            ],
+                #CRUD-FIELD-CALENDY-END
                 #CRUD-NEW-FIELD
+
+
+
 
 
 

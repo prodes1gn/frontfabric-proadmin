@@ -20,7 +20,15 @@ class UpdateRequestsitemRequest extends FormRequest {
                 'required',
                 Rule::unique('requestsitems_translations')->where('locale', $this->lang)->ignore($this->requestsitem->id, 'requestsitem_id'),
             ],
+                #CRUD-FIELD-TEXT-START
+            'text' => [
+                'nullable',
+                'max:100000',
+                'required',
+            ],
+                #CRUD-FIELD-TEXT-END
                 #CRUD-NEW-FIELD
+
         ];
     }
 
